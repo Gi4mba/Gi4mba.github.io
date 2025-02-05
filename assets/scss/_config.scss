@@ -1,0 +1,89 @@
+// Variables
+$text-color: rgba(white, 0.7);
+$neon-pink: #ff00ff;
+$pale-pink: #ffcfff;
+$neon-yellow: #ffff00;
+$neon-green: #d4ff00;
+$neon-lighterpurple: #9824e5;
+
+$main-font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+$header-color: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.6) 100%);
+
+$background-color: linear-gradient(
+    120deg,
+    darken($color: $neon-pink, $amount: 15%), 
+    darken($color: purple, $amount: 30%)
+    );
+    
+
+// Animations
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+$glow-effect: 0 0 10px;
+
+
+// Global style
+html {
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+}
+
+body {
+    margin: 0;
+    font-family: $main-font;
+  
+    em{
+      color: rgba(#fff, 0.9);
+    }
+
+    header {
+        box-sizing: border-box;
+    }
+
+    main {
+        padding-bottom: 2rem;
+        background: $background-color;
+        background-size: 400% 400%;
+        animation: gradientAnimation 6s ease infinite;
+        overflow-x: hidden;
+    }
+}
+
+
+
+// Mixins
+@mixin socialLayout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25vw;
+    flex-wrap: wrap;
+    row-gap: 5px;
+}
+
+@mixin buttonLayout {
+    background: $neon-green !important;
+    transition: 0.4s;
+    color: black !important;
+    border-color: black !important;
+    box-shadow: $glow-effect darken($color: purple, $amount: 10%);
+    transform: translateY(-2px);
+}
+
+@mixin transitionEase {
+    transition: all 0.5s ease-in-out;
+}

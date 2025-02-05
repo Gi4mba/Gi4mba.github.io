@@ -1,0 +1,15 @@
+.section {
+    height: 100vh;
+    background-image: url('../img/background_1024x1024.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  @media (min-width: 1921px) {
+    .section {
+      background-image: url('../img/background_2048x2048.png');
+      position: relative;
+      height: 100vh;
+    }
+  }

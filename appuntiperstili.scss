@@ -1,0 +1,12 @@
+body {
+    background-image: url('path/to/1024x1024-image.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  
+  @media (min-width: 768px) {
+    body {
+      background-image: url('path/to/2048x2048-image.jpg');
+    }
+  }
+  
