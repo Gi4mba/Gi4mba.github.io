@@ -1,0 +1,158 @@
+@import 'config';
+@import 'header';
+@import 'secondary-section';
+
+.uk-section {
+  height: 100vh;
+}
+
+.divider {
+  border-top-color: rgba(255, 255, 255, 0.214) !important;
+}
+
+.uk-heading-large {
+  color: white !important;
+  text-shadow: 0 0 2px $neon-green;
+  letter-spacing: 1px;
+}
+
+.uk-text-xlarge {
+  color: $neon-green;
+  text-transform: uppercase;
+  font-style: italic;
+  letter-spacing: 1px;
+}
+
+// Button styles
+.uk-button-default {
+  color: white !important;
+}
+
+.uk-button-cyberpunk {
+  border: 2px solid transparent;
+  padding: 12px 24px;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden !important;
+  
+  &:hover {
+    @include buttonLayout;
+  }
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent,
+      rgba(170, 13, 13, 0.321),
+      transparent
+    );
+    transition: 0.4s;
+  }
+  
+  &:hover::before {
+    left: 100%;
+  }
+}
+
+
+// Section styles
+.uk-section {
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      $neon-green,
+      transparent
+    );
+  }
+}
+
+footer {
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0px 10px 0px;
+
+  .social {
+    @include socialLayout;
+    
+    .container {
+    font-size: 23px;
+    display: flex;
+    margin: 0 5px;
+    width: 11vw;
+
+      .link{
+        text-decoration: none;
+        color: rgba(#fff, 0.7);
+    
+        i {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          cursor: pointer;
+          transition: color 0.2s;
+
+          &:hover {
+            color: $neon-green;
+          }
+  
+          .label {
+          font-family: $main-font;
+          margin: 0;
+          padding-left: 0.6rem;
+          font-size: 0.6rem;
+          cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
+
+.copyright {
+  width: 96%;
+  margin: 0;
+  background: black;
+  padding-left: 20px;
+  font-size: 0.6rem;
+  color: rgba(#fff, 0.3);
+}
+
+@media (max-width: 768px) {
+  .uk-heading-large {
+    font-size: 2.5rem;
+  }
+  
+  .uk-text-xlarge {
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 660px) {
+  footer .social {
+    flex-wrap: nowrap;
+    width: 15vw ;
+    position: relative;
+    left: 6px;
+  }
+}
