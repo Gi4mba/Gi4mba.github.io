@@ -5,8 +5,8 @@ header {
     position: fixed;
     z-index: 2;
     width: 100vw;
-    padding: 1.5rem 1.5rem; //Media query per portarlo a 4rem
-    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+    padding: 1rem 1rem; //Media query per portarlo a 4rem
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     // margin-bottom: 7rem;
 
     div a .logo {
@@ -31,7 +31,7 @@ header {
             &::before {
                 content: '';
                 position: absolute;
-                top: 39px;
+                top: 32px;
                 width: 28px;
                 height: 3px;
                 background-color: rgb(210, 210, 210);
@@ -41,7 +41,7 @@ header {
             &::after {
                 content: '';
                 position: absolute;
-                top: 55px;
+                top: 46px;
                 width: 22px;
                 height: 3px;
                 background-color: rgb(210, 210, 210);
@@ -53,12 +53,12 @@ header {
                 background: transparent;
 
                 &::before {
-                    transform: rotate(45deg) translate(-27px, -28px);
+                    transform: rotate(45deg) translate(-21px, -24px);
                 }
             
                 &::after {
                     width: 28px;
-                    transform: rotate(-45deg) translate(39px, -38px);
+                    transform: rotate(-45deg) translate(34px, -32px);
                 }
             }
         }
@@ -107,18 +107,18 @@ header {
             // gap: 1rem;
             // text-decoration: none;
    
-        li > a {
+        ul > li > a {
             display: inline-block;
             color: $text-color;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             text-transform: uppercase;
             padding: 2rem 0;
-            font-weight: 400;
+            font-weight: 300;
             @include transitionEase;
             transition: 0.15s;
    
             &:hover {
-                color: darken($neon-green, 5%);
+                color: darken($neon-green, 2%);
                 text-decoration: none;
             }
 
