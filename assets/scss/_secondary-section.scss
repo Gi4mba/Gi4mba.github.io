@@ -1,8 +1,8 @@
 .secondary-section {
   position: relative;
-  padding-top: 70px;
+  padding-top: 90px;
   font-family: $main-font;
-  background: black;
+  background: #0a0a0a;
 
   .uk-container{
     padding-left: 40px;
@@ -42,27 +42,27 @@
     .container {
       padding: 20px;
       border-radius: inherit;
-      background: black;
+      background: #090909;
       z-index: 2;
     
 
       .my-vision {
         text-align: center;
-        font-style: italic;
         font-weight: 300;
-        margin-bottom: 20px;
+        margin-bottom: 40px;
         color: rgba(#fff, 0.4);
       }
 
       h4 {
-        color: $neon-pink;
+        color: rgba($neon-pink, 0.9);
+        font-style: italic;
         margin: 20px 0 20px;
       }
 
       p {
         line-height: 1.6;
-        color: $text-color;
         margin-bottom: 40px;
+        color: rgba(#fff, 0.6);
       }
     }
   }
@@ -70,23 +70,27 @@
 @media (min-width: 360px) {
   .shadowed-container .container .my-vision {
     font-size: 1.6rem;
-  }
-  .shadowed-container .container h4 {
-    font-size: 1.3rem;
-  }
-  .shadowed-container .container p {
-    font-size: 0.9rem;
+
+    ~ h4 {
+      font-size: 1.3rem;
+
+      ~ p {
+        font-size: 1rem;
+      }
+    }
   }
 }
 
 @media (min-width: 1200px) {
   .shadowed-container .container .my-vision {
     font-size: 1.4rem;
-  }
-  .shadowed-container .container h4 {
-    font-size: 1.1rem;
-  }
-  .shadowed-container .container p {
-    font-size: 0.8rem;
+
+    ~ h4 {
+      font-size: 1.1rem;
+
+      ~ p {
+        font-size: 0.8rem;
+      }
+    }
   }
 }

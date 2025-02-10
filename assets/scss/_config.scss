@@ -2,7 +2,6 @@
 $text-color: rgba(white, 0.7);
 $neon-pink: #ff00ff;
 $pale-pink: #ffcfff;
-$neon-yellow: #ffff00;
 $neon-green: #d4ff00;
 $neon-lighterpurple: #9824e5;
 
@@ -40,26 +39,19 @@ $glow-effect: 0 0 10px;
 html {
     scroll-behavior: smooth;
     scrollbar-width: none;
+    background: black;
 }
 
 body {
     margin: 0;
     font-family: $main-font;
   
-    em{
-      color: rgba(#fff, 0.9);
+    em {
+      color: $neon-pink;
     }
 
     header {
         box-sizing: border-box;
-    }
-
-    main {
-        padding-bottom: 2rem;
-        background: $background-color;
-        background-size: 400% 400%;
-        animation: gradientAnimation 6s ease infinite;
-        overflow-x: hidden;
     }
 }
 

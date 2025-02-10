@@ -1,6 +1,14 @@
 @import 'config';
 @import 'header';
 @import 'secondary-section';
+@import 'about';
+
+body main {
+  background: $background-color;
+  background-size: 400% 400%;
+  animation: gradientAnimation 6s ease infinite;
+  overflow-x: hidden;
+}
 
 .uk-section {
   height: 100vh;
@@ -84,12 +92,13 @@
 }
 
 footer {
-  background-color: black;
+  overflow-x: hidden;
+  background-color: #0a0a0a;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 10px 0px 10px 0px;
+  padding: 10px;
 
   .social {
     @include socialLayout;
@@ -130,10 +139,10 @@ footer {
 }
 
 .copyright {
-  width: 96%;
-  margin: 0;
-  background: black;
-  padding-left: 20px;
+  width: 100%;
+  margin: 40px 0 0;
+  padding-left: 15px;
+  background-color: #0a0a0a;
   font-size: 0.6rem;
   color: rgba(#fff, 0.3);
 }
@@ -146,13 +155,37 @@ footer {
   .uk-text-xlarge {
     font-size: 1.2rem;
   }
+
+  footer .social {
+    flex-direction: row;
+    width: 70%;
+    margin-bottom: 10px;
+    justify-content: space-evenly;
+
+    .container {
+      font-size: 35px;
+
+      .link i .label {
+        display: none;
+      }
+    }
+  }
 }
 
-@media (min-width: 660px) {
+@media (min-width: 960px) {
   footer .social {
     flex-wrap: nowrap;
-    width: 15vw ;
-    position: relative;
-    left: 6px;
+  }
+}
+
+@media (min-width: 1600px) {
+  footer .social {
+    flex-wrap: nowrap;
+    width: 14%;
+    left: 20px;
+
+    .container .link i .label {
+      padding-left: 1rem;
+    }
   }
 }
