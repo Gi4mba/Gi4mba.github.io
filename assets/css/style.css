@@ -25,6 +25,9 @@ body em {
 body header {
   box-sizing: border-box;
 }
+body main {
+  height: 100%;
+}
 
 header {
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.6) 100%);
@@ -204,7 +207,7 @@ header div .nav .nav-menu .nav-menu_item:nth-child(4) {
 .shadowed-container .container {
   padding: 20px;
   border-radius: inherit;
-  background: #090909;
+  background: #0a0a0a;
   z-index: 2;
 }
 .shadowed-container .container .my-vision {
@@ -246,11 +249,17 @@ header div .nav .nav-menu .nav-menu_item:nth-child(4) {
     font-size: 0.8rem;
   }
 }
+body main {
+  margin: 0;
+  padding: 0;
+}
+
 body main .about {
   background: #0a0a0a;
   display: flex;
   justify-content: center;
   padding: 120px 20px 20px 20px;
+  border-radius: 5px;
 }
 body main .about ul {
   list-style: none;
@@ -261,10 +270,12 @@ body main .about .container {
   display: flex;
   max-width: 1200px;
   width: 100%;
-  background: #0a0a0a;
+  background: #0f0f0f;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 1px 4px 10px rgba(0, 0, 0, 0.1);
+  /* Colonna vuota */
+  /* Contenuto CV */
 }
 body main .about .container .col {
   padding: 0;
@@ -276,17 +287,18 @@ body main .about .container .col-center li {
   margin-bottom: 0.4rem;
 }
 body main .about .container .col-center .link {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(144, 144, 144, 0.8);
   padding-right: 0.4rem;
+  text-decoration: underline;
 }
 body main .about .container .col-center .link:hover {
-  color: #b2d600;
+  color: #bfe600;
 }
 body main .about .container .col-center .link img {
   padding-right: 0.4rem;
 }
 body main .about .container .col-center .bio-link {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(144, 144, 144, 0.8);
 }
 body main .about .container .col-right {
   padding: 2rem 0;
@@ -299,7 +311,7 @@ body main .about .container .col-right {
 }
 body main .about .container .col-right .profile-img {
   padding: 1rem;
-  height: 30%;
+  width: 350px;
   border-radius: 10px;
 }
 body main .about .container .col-right .projects {
@@ -327,24 +339,11 @@ body main .about .container .col-right .projects-item .link {
   color: #0a0a0a;
   font-size: 1rem;
 }
-body main .about .container .col-right .projects-item .button {
-  color: #0a0a0a;
-  font-size: 1rem;
-  margin-top: 20px;
-  padding: 20px;
-  border: solid 1px #0a0a0a;
-  width: 290px;
-}
-body main .about .container .col-right .projects-item .button:hover {
-  transition: 0.4s;
-  color: white;
-  border: solid 1px white;
-}
 body main .about .container .col:first-child {
-  width: 15%; /* Colonna vuota */
+  width: 15%;
 }
 body main .about .container .col:nth-child(2) {
-  width: 50%; /* Contenuto CV */
+  width: 50%;
 }
 
 .about .container .col > h1 {
@@ -373,6 +372,10 @@ body footer {
 }
 
 @media (max-width: 900px) {
+  body main .about {
+    padding: 50px 10px 20px;
+    border-radius: 0;
+  }
   body main .about .container {
     padding: 2rem;
     flex-direction: column;
@@ -386,10 +389,189 @@ body footer {
   body main .about .container .col-right {
     width: 100%;
     padding: 0;
+    background: #0f0f0f;
+  }
+  body main .about .container .col-right .projects {
+    background: #0f0f0f;
+    color: #666;
+    padding: 1rem 0;
+    width: 100%;
+  }
+  body main .about .container .col-right .projects h2 {
+    color: #666;
+  }
+  body main .about .container .col-right .projects-item .link {
+    color: rgba(255, 0, 255, 0.9);
+    text-decoration: underline;
   }
   body main .about .container .col-right .profile-img {
-    width: 250px;
-    height: 250px;
+    width: 60%;
+  }
+}
+@media (min-width: 300px) {
+  body main .about .container .col-right .profile-img {
+    width: 100%;
+  }
+}
+@media (min-width: 430px) {
+  body main .about .container .col-right .profile-img {
+    width: 60%;
+  }
+}
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background-color: #0f0f0f;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.6;
+}
+body .contact-section {
+  height: 100vh;
+  margin: 30vh 37vw 0;
+}
+body .contact-container {
+  max-width: 1600px;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-image: url("/assets/img/form-background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  animation: fadeIn 0.6s ease-out;
+}
+body .contact-container h1 {
+  margin-bottom: 0.6rem;
+  font-size: 36px;
+  font-weight: 400;
+}
+body .contact-container .divider {
+  margin: 0;
+  width: 90%;
+  box-shadow: 6px 5px 10px 1px rgba(0, 0, 0, 0.4);
+}
+
+.contact-me {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: uppercase;
+  font-size: 2rem;
+  text-shadow: 5px 8px 8px rgba(0, 0, 0, 0.4);
+}
+
+.form-group {
+  position: relative;
+  margin: 1.5rem 0;
+  padding: 10px 0;
+  animation: fadeIn 0.6s ease-out;
+  animation-fill-mode: both;
+}
+.form-group:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.form-group:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.form-group:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.form-group:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+input,
+textarea {
+  width: 95%;
+  margin-top: 0.3rem;
+  padding: 0.6rem;
+  border: none;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+  box-shadow: 1px 5px 20px 1px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+}
+input::-moz-placeholder, textarea::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+input::placeholder,
+textarea::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+input:focus, input:focus-visible,
+textarea:focus,
+textarea:focus-visible {
+  outline: 1px solid rgba(255, 255, 255, 0.4) !important;
+}
+
+.label {
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 600;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  padding-left: 5px;
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+textarea::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+textarea::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.send-button {
+  position: relative;
+  left: 25%;
+  width: 50%;
+  background-color: #a41669;
+  color: white !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  font-size: 1.1rem;
+  font-weight: bold !important;
+  letter-spacing: 1px;
+  box-shadow: 1px 5px 20px 1px rgba(0, 0, 0, 0.4);
+}
+.send-button:hover {
+  background-color: rgba(212, 255, 0, 0.9);
+  transform: translateY(-2px);
+  box-shadow: 1px 5px 20px 1px rgba(0, 0, 0, 0.4);
+}
+
+footer {
+  background: transparent;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 1600px) {
+  body .contact-section {
+    margin: 24vh 20vw 0;
+  }
+}
+@media (max-width: 900px) {
+  body .contact-section {
+    margin: 20vh 10vw 0;
+  }
+}
+@media (max-width: 375px) {
+  body .contact-container h1 {
+    font-size: 1.6em;
+  }
+  .send-button {
+    left: 10%;
+    width: 80%;
   }
 }
 body main {
