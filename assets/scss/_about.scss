@@ -1,8 +1,14 @@
+body main {
+  margin: 0;
+  padding: 0;
+}
+
 body main .about{
   background: #0a0a0a;
   display: flex;
   justify-content: center;
   padding: 120px 20px 20px 20px;
+  border-radius: 5px;
 
   ul {
     list-style: none;
@@ -14,7 +20,7 @@ body main .about{
     display: flex;
     max-width: 1200px;
     width: 100%;
-    background: #0a0a0a;
+    background: #0f0f0f;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 1px 4px 10px rgba(0, 0, 0, 0.1);
@@ -30,11 +36,12 @@ body main .about{
         }
 
         .link {
-          color: rgba(white, 0.6);
+          color: rgba(#909090, 0.8);
           padding-right: 0.4rem;
+          text-decoration: underline;
 
           &:hover{
-            color: darken($neon-green, 8%);
+            color: darken($neon-green, 5%);
           }
 
           img {
@@ -43,7 +50,7 @@ body main .about{
         }
 
         .bio-link {
-          color: rgba(#fff, 0.5);
+          color: rgba(#909090, 0.8);
         }
       }
 
@@ -58,7 +65,7 @@ body main .about{
 
         .profile-img {
           padding: 1rem;
-          height: 30%;
+          width: 350px;
           border-radius: 10px;
         }
 
@@ -88,33 +95,19 @@ body main .about{
               color: #0a0a0a;
               font-size: 1rem;
             }
-
-            .button {
-              color: #0a0a0a;
-              font-size: 1rem;
-              margin-top: 20px;
-              padding: 20px;
-              border: solid 1px #0a0a0a;
-              width: 290px;
-
-              &:hover {
-                transition: 0.4s;
-                color: white;
-                border: solid 1px white;
-
-              }
-            }
           }
         }
       }
     }
 
+    /* Colonna vuota */
     .col:first-child {
-      width: 15%; /* Colonna vuota */
+      width: 15%;
     }
 
+    /* Contenuto CV */
     .col:nth-child(2) {
-      width: 50%; /* Contenuto CV */
+      width: 50%;
     }
   }
 }
@@ -147,27 +140,62 @@ body footer {
   padding-top: 40px;
 }
 
+// Aggiungere Media query sotto i 600px, per l'immagine profilo.
+
 @media (max-width: 900px) {
-body main .about .container {
-    padding: 2rem;
-    flex-direction: column;
+  body main .about {
+    padding: 50px 10px 20px;
+    border-radius: 0;
+    
+    .container {
+      padding: 2rem;
+      flex-direction: column;
 
-    .col:first-child {
-      display: none;
-    }
+      .col:first-child {
+        display: none;
+      }
 
-    .col:nth-child(2) {
-      width: 100%;
-    }
+      .col:nth-child(2) {
+        width: 100%;
+      }
 
-    .col-right {
-      width: 100%;
-      padding: 0;
+      .col-right {
+        width: 100%;
+        padding: 0;
+        background: #0f0f0f;
 
-      .profile-img {
-        width: 250px;
-        height: 250px;
+        .projects {
+          background: #0f0f0f;
+          color: #666;
+          padding: 1rem 0;
+          width: 100%;
+
+          h2 {
+            color: #666;
+          }
+
+          &-item .link {
+            color: rgba($neon-pink, 0.9);
+            text-decoration: underline;
+          }
+        }
+
+        .profile-img {
+          width: 60%;
+        }
       }
     }
+  }
+}
+
+@media (min-width: 300px) {
+  body main .about .container .col-right .profile-img {
+    width: 100%;
+  }
+}
+
+@media (min-width: 430px) {
+  body main .about .container .col-right .profile-img {
+    width: 60%;
   }
 }

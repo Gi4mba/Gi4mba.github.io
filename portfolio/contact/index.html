@@ -1,43 +1,114 @@
-<section id="contact" class="uk-section contact-section">
-    <div class="uk-container">
-        <h2 class="uk-heading-line uk-text-center"><span class="glow-text">Contattami</span></h2>
-        
-        <form id="contactForm" class="uk-form-stacked cyber-form" action="https://your-email-service.com" method="POST">
-            <div class="uk-margin form-group">
-                <label class="uk-form-label cyber-label" for="name">Nome</label>
-                <div class="uk-form-controls">
-                    <input class="uk-input cyber-input" type="text" id="name" name="name" 
-                           placeholder="Il tuo nome" required
-                           data-aos="fade-right" data-aos-delay="100">
-                    <div class="input-line"></div>
-                </div>
-            </div>
+<!DOCTYPE html>
+<html lang="en">
 
-            <div class="uk-margin form-group">
-                <label class="uk-form-label cyber-label" for="email">Email</label>
-                <div class="uk-form-controls">
-                    <input class="uk-input cyber-input" type="email" id="email" name="email" 
-                           placeholder="La tua email" required
-                           data-aos="fade-right" data-aos-delay="200">
-                    <div class="input-line"></div>
-                </div>
-            </div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giovanni Battista Avella - Contact me</title>
+  <meta property="og:title" content="Giovanni Battista Avella - Portfolio Contact me">
+  <meta property="og:description" content="Giovanni Battista Avella, Blockchain Developer - Solidity, HTML, CSS, JavaScript e React skills. Contact me.">
+  <meta property="og:image" content="#">
+  <meta property="og:url" content="https://gi4mba.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_IT">
 
-            <div class="uk-margin form-group">
-                <label class="uk-form-label cyber-label" for="message">Messaggio</label>
-                <div class="uk-form-controls">
-                    <textarea class="uk-textarea cyber-input" id="message" name="message" 
-                              rows="5" placeholder="Il tuo messaggio" required
-                              data-aos="fade-right" data-aos-delay="300"></textarea>
-                    <div class="input-line"></div>
-                </div>
-            </div>
+  <link rel="icon" href="/assets/img/favicon/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/img/favicon/favicon-16x16.png" sizes="16x16" type="image/png">
+  <link rel="icon" href="/assets/img/favicon/favicon-32x32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png">
+  <link rel="icon" href="/assets/img/favicon/android-chrome-192x192.png" sizes="192x192" type="image/png">
+  <link rel="icon" href="/assets/img/favicon/android-chrome-512x512.png" sizes="192x192" type="image/png">
+  <link rel="manifest" href="/assets/site.webmanifest.json">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.9.4/dist/css/uikit.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
 
-            <button class="uk-button uk-button-primary cyber-button" type="submit"
-                    data-aos="fade-up" data-aos-delay="400">
-                <span class="button-content">Invia</span>
-                <span class="button-glitch"></span>
-            </button>
-        </form>
+<body>
+  <header class="header">
+      <div class="uk-flex uk-flex-between uk-flex-middle">
+        <a href="/">
+          <img alt="logo" loading="lazy" width="48" height="48" style="color:transparent" srcset="/assets/img/logo.png 1x, /assets/img/logo.png 2x" src="/assets/img/logo.png" class="logo">
+        </a>
+    
+        <div class="menu-btn uk-flex uk-flex-middle">
+          <span class="menu-btn_burger"></span>
+        </div>
+        <nav class="nav">
+          <ul class="nav-menu uk-flex uk-flex-middle">
+            <li class="nav-menu_item"><a href="/" class="uk-text-bold">Home</a></li>
+            <li class="nav-menu_item"><a href="/portfolio/about" class="uk-text-bold">About</a></li>
+            <li class="nav-menu_item"><a href="/portfolio/projects" class="uk-text-bold">Projects</a></li>
+            <li class="nav-menu_item"><a href="/portfolio/contact" class="uk-text-bold active">Contact</a></li>
+          </ul>
+      </div>
+  </header>
+
+  <main>
+    <section class="contact-section">
+    <div class="contact-container">
+      <h1 class="contact-me">Get in touch</h1>
+      <hr class="divider">
+      <form id="contact-form">
+        <div class="form-group">
+          <label class="label" for="user_name">Name</label>
+          <input type="text" id="user_name" class="contact-inputs" name="user_name" required placeholder="Your Name">
+        </div>
+        <div class="form-group">
+          <label class="label" for="user_email">Email</label>
+          <input type="email" id="user_email" class="contact-inputs" name="user_email" autocomplete="email" required placeholder="your-email@example.com">
+        </div>
+        <div class="form-group">
+          <label class="label" for="message">Message</label>
+          <textarea id="message" class="contact-inputs" name="message" required placeholder="Your message..."></textarea>
+        </div>
+        <button type="submit" class="uk-button send-button">Submit</button>
+      </form>
     </div>
   </section>
+  </main>
+
+  <footer class="footer">
+    <div class="social">
+      <div class="container">
+        <a href="https://www.linkedin.com/in/giovanni-battista-avella-1a915633b/" class="link" target="_blank" rel="noopener">
+          <i class="fa-brands fa-linkedin" id="linkedin">
+            <label class="label" for="linkedin">LinkedIn</label>
+          </i>
+        </a>
+      </div>
+
+      <div class="container">
+        <a href="https://x.com/gi4mba" class="link" target="_blank" rel="noopener">
+          <i class="fa-brands fa-twitter-square" id="x">
+            <label class="label" for="x">Twitter/X</label>
+          </i>
+        </a>
+      </div>
+
+      <div class="container">
+        <a href="https://www.instagram.com/giamba._/" class="link" target="_blank" rel="noopener">
+          <i class="fa-brands fa-instagram-square" id="instagram">
+            <label class="label" for="instagram">Instagram</label>
+          </i>
+        </a>
+      </div>
+
+      <div class="container">
+        <a href="https://github.com/Gi4mba" class="link" target="_blank" rel="noopener">
+          <i class="fa-brands fa-github-square" id="github">
+            <label class="label" for="github">GitHub</label>
+          </i>
+        </a>
+      </div>
+    </div>
+    <p class="copyright">© 2025 Giovanni Battista Avella | All rights Reserved</p>
+  </footer>
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script type="text/javascript" src="/assets/js/sendEmail.js"></script>
+  <script src="/assets/js/menuAnimation.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.9.4/dist/js/uikit.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.9.4/dist/js/uikit-icons.min.js"></script>
+</body>
+</html>
