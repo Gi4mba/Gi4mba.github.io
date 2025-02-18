@@ -166,6 +166,40 @@ header div .nav .nav-menu .nav-menu_item:nth-child(4) {
   justify-content: center;
 }
 
+@media (min-width: 1024px) {
+  header {
+    position: relative;
+    background: rgba(0, 0, 0, 0.6);
+  }
+  header div .menu-btn {
+    visibility: hidden;
+  }
+  header div .nav {
+    position: relative;
+    height: 50px;
+    visibility: visible;
+    background: transparent;
+  }
+  header div .nav .nav-menu {
+    display: block;
+    transform: translateY(0);
+    height: 100%;
+    text-align: right;
+  }
+  header div .nav .nav-menu_item {
+    display: inline !important;
+    border-bottom: none;
+    padding-right: 3.5rem;
+  }
+  header div .nav .nav-menu_item a {
+    font-size: 1.5rem;
+    font-weight: 400;
+    padding: 0.5rem 0 0.5rem;
+  }
+  body main .about {
+    border-radius: 0 !important;
+  }
+}
 .secondary-section {
   position: relative;
   padding-top: 90px;
@@ -271,6 +305,7 @@ body main .about .container {
   max-width: 1200px;
   width: 100%;
   background: #0f0f0f;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 1px 4px 10px rgba(0, 0, 0, 0.1);
@@ -424,6 +459,9 @@ body {
   color: rgba(255, 255, 255, 0.6);
   line-height: 1.6;
 }
+body main .contact {
+  background: #0a0a0a;
+}
 body .contact-section {
   height: 100vh;
   margin: 30vh 37vw 0;
@@ -555,23 +593,43 @@ footer {
     transform: translateY(0);
   }
 }
-@media (max-width: 1600px) {
+@media (min-width: 300px) {
   body .contact-section {
-    margin: 24vh 20vw 0;
+    margin: 0;
+    padding: 160px 40px 0;
   }
-}
-@media (max-width: 900px) {
-  body .contact-section {
-    margin: 20vh 10vw 0;
-  }
-}
-@media (max-width: 375px) {
   body .contact-container h1 {
     font-size: 1.6em;
   }
   .send-button {
     left: 10%;
     width: 80%;
+  }
+  input {
+    width: 95%;
+  }
+}
+@media (min-width: 640px) {
+  .send-button {
+    left: 35%;
+    width: 30%;
+  }
+}
+@media (min-width: 900px) {
+  body .contact-section {
+    padding: 20vh 10vw 0;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  input {
+    width: 30%;
+  }
+}
+@media (min-width: 1600px) {
+  body .contact-section {
+    padding: 24vh 20vw 0;
   }
 }
 body main {
