@@ -133,3 +133,45 @@ header {
         justify-content: center;
     }
 }
+
+@media (min-width: 1024px) {
+
+    header {
+        position: relative;
+        background: rgba(black, 0.6);
+    
+        div .menu-btn {
+            visibility: hidden;
+        }
+
+        div .nav {
+            position: relative;
+            height: 50px;
+            visibility: visible;
+            background: transparent;
+
+            .nav-menu {
+                display: block;
+                transform: translateY(0);
+                height: 100%;
+                text-align: right;
+
+                &_item {
+                    display: inline !important;
+                    border-bottom: none;
+                    padding-right: 3.5rem;
+
+                    a {
+                        font-size: 1.5rem;
+                        font-weight: 400;
+                        padding: .5rem 0 .5rem;
+                    }
+                }
+            }
+        }
+    }
+
+    body main .about {
+        border-radius: 0 !important;
+    }
+}

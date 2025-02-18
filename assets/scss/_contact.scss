@@ -4,6 +4,10 @@ body {
     color: rgba(white, 0.6);
     line-height: 1.6;
 
+    main .contact {
+        background: #0a0a0a;
+    }
+
     .contact-section {
         height: 100vh;
         margin: 30vh 37vw 0;
@@ -125,24 +129,51 @@ footer {
   to { opacity: 1; transform: translateY(0); }
 }
 
-@media (max-width: 1600px) {
+@media (min-width: 300px) {
     body .contact-section {
-        margin: 24vh 20vw 0;
+        margin: 0;
+        padding: 160px 40px 0;
     }
-}
 
-@media (max-width: 900px) {
-    body .contact-section {
-        margin: 20vh 10vw 0;
-    }
-}
-
-@media (max-width: 375px) {
     body .contact-container h1{
         font-size: 1.6em;
     }
+    
     .send-button {
         left: 10%;
         width: 80%;
+    }
+
+    input {
+        width: 95%;
+    }
+}
+
+@media (min-width: 640px) {
+
+    .send-button {
+        left: 35%;
+        width: 30%;
+    }
+}
+
+@media (min-width: 900px) {
+    body .contact-section {
+        padding: 20vh 10vw 0;
+    }
+
+    .form-group{
+        display: flex;
+        flex-direction: column;
+    }
+
+    input {
+        width: 30%;
+    }
+}
+
+@media (min-width: 1600px) {
+    body .contact-section {
+        padding: 24vh 20vw 0;
     }
 }
