@@ -31,6 +31,11 @@ body main .about{
       &-center {
         padding: 2rem 2rem 0 0;
 
+        .certification-img {
+          padding-bottom: 2rem;
+          width: 250px;
+        }
+
         li {
           margin-bottom: 0.4rem;
         }

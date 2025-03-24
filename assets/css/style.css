@@ -283,6 +283,10 @@ body main .about .container .col {
 body main .about .container .col-center {
   padding: 2rem 2rem 0 0;
 }
+body main .about .container .col-center .certification-img {
+  padding-bottom: 2rem;
+  width: 250px;
+}
 body main .about .container .col-center li {
   margin-bottom: 0.4rem;
 }
