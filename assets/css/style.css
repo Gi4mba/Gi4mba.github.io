@@ -351,7 +351,7 @@ body main .about .container .col-right {
 body main .about .container .col-right .profile-img {
   padding: 1rem;
   width: 350px;
-  border-radius: 10px;
+  border-radius: 50%;
 }
 body main .about .container .col-right .projects {
   margin-top: 40px;
