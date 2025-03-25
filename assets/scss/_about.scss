@@ -29,6 +29,11 @@ body main .about{
     .col {
       padding: 0;
 
+      &-left .profile-img{
+        display: none;
+        padding: 1rem;
+      }
+
       &-center {
         padding: 2rem 2rem 0 0;
 
@@ -71,8 +76,8 @@ body main .about{
 
         .profile-img {
           padding: 1rem;
-          width: 350px;
-          border-radius: 50%;
+          width: 80%;
+          border-radius: 25px;
         }
 
         .projects {
@@ -158,7 +163,15 @@ body footer {
       flex-direction: column;
 
       .col:first-child {
-        display: none;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+      
+        .profile-img {
+          display: block;
+          border-radius: 25px;
+          width: 100%;
+        }
       }
 
       .col:nth-child(2) {
@@ -187,7 +200,7 @@ body footer {
         }
 
         .profile-img {
-          width: 60%;
+          display: none;
         }
       }
     }
@@ -195,13 +208,13 @@ body footer {
 }
 
 @media (min-width: 300px) {
-  body main .about .container .col-right .profile-img {
+  body main .about .container .col:first-child .profile-img {
     width: 100%;
   }
 }
 
-@media (min-width: 430px) {
-  body main .about .container .col-right .profile-img {
-    width: 60%;
+@media (min-width: 640px) {
+  body main .about .container .col:first-child .profile-img {
+    width: 50%;
   }
 }
