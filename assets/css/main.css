@@ -23,6 +23,7 @@
   --violet: #9824e5;   /* background fog */
   --pink: #ffb3f7;     /* italic emphasis */
   --sheet: #120a1c;    /* the colored sheet that slides over the page */
+  --lilac: #b48cf0;    /* abstain votes in the simulator */
 
   --heading: #f6f2fb;
   --text: #efeaf7;
@@ -247,7 +248,7 @@ img, svg { max-width: 100%; }
   flex-wrap: wrap;
   align-items: center;
   gap: 56px 64px;
-  padding-block: clamp(48px, 9vw, 120px) clamp(64px, 9vw, 120px);
+  padding-block: clamp(48px, 9vw, 120px) clamp(56px, 7vw, 104px);
 }
 .hero-copy { flex: 1 1 520px; min-width: 0; }
 
@@ -335,7 +336,9 @@ h1 {
 .hud .spec { margin-top: 12px; }
 
 /* --- Sections ------------------------------------------------------------- */
-.section { padding-bottom: clamp(72px, 9vw, 128px); scroll-margin-top: 24px; }
+.section { padding-bottom: clamp(64px, 7vw, 104px); scroll-margin-top: 24px; }
+/* The sheet brings its own top padding: keep the dark gap before it short */
+.section:has(+ .sheet) { padding-bottom: clamp(40px, 4.5vw, 64px); }
 .section h2 {
   margin: 16px 0 0;
   font-size: clamp(34px, 4.4vw, 56px);
@@ -375,9 +378,82 @@ h1 {
 .feature .tags { margin-top: 28px; }
 .feature .btn { margin-top: 32px; }
 
+/* DnA-DAO vote simulator. Initial state is rendered in the HTML; the bar
+   defaults below match it, JS only updates them on input. */
+.sim { flex: 1 1 100%; min-width: 0; padding-top: 36px; border-top: 1px solid var(--line); }
+.sim-title { margin: 0; font-family: var(--serif); font-weight: 500; font-size: 28px; line-height: 1.1; color: var(--heading); }
+.sim-note { max-width: 560px; margin: 10px 0 0; font-size: 15px; line-height: 1.6; font-weight: 300; color: var(--body); }
+.sim-note code { font-family: var(--mono); font-size: 0.92em; color: var(--acid); }
+.sim-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 32px 56px; margin-top: 28px; }
+.sim-controls { display: grid; align-content: start; gap: 18px; }
+.sim-field { display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 4px 12px; }
+.sim-field label { font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.sim-field output { font: 500 15px var(--mono); font-variant-numeric: tabular-nums; color: var(--text); }
+.sim-field input { grid-column: 1 / -1; width: 100%; height: 32px; margin: 0; cursor: pointer; }
+.sim-field[data-kind="for"] input { accent-color: var(--acid); }
+.sim-field[data-kind="against"] input { accent-color: var(--pink); }
+.sim-field[data-kind="abstain"] input { accent-color: var(--lilac); }
+.sim-presets { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.sim-presets button {
+  min-height: 40px;
+  padding: 0 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  background: transparent;
+  color: var(--soft);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+.sim-presets button:hover { border-color: var(--pink); color: var(--pink); }
+.sim-presets button:active { transform: translateY(1px); }
+.sim-outcome { min-width: 0; }
+.sim-status { display: flex; align-items: center; gap: 12px; margin: 0; font-family: var(--serif); font-size: clamp(30px, 3.4vw, 40px); line-height: 1.1; }
+.sim-status::before { content: ""; flex: none; width: 12px; height: 12px; background: currentColor; }
+.sim-status[data-status="approved"] { color: var(--acid); }
+.sim-status[data-status="rejected"] { color: var(--pink); }
+.sim-status[data-status="quorum"] { color: var(--soft); }
+.sim-bar { --f: 0.3; --a: 0.18; --b: 0.06; position: relative; display: flex; height: 14px; margin-top: 34px; background: rgba(255, 255, 255, 0.07); }
+.sim-seg { height: 100%; transition: width 0.18s ease-out; }
+.sim-seg-for { width: calc(var(--f) * 100%); background: var(--acid); }
+.sim-seg-against { width: calc(var(--a) * 100%); background: var(--pink); }
+.sim-seg-abstain { width: calc(var(--b) * 100%); background: var(--lilac); }
+.sim-quorum { position: absolute; top: -6px; bottom: -6px; left: 40%; width: 2px; background: var(--text); }
+.sim-quorum::after { content: "40%"; position: absolute; bottom: calc(100% + 4px); left: 50%; transform: translateX(-50%); font: 11px var(--mono); color: var(--muted); }
+.sim-checks { display: grid; gap: 8px; margin: 20px 0 0; padding: 0; list-style: none; }
+.sim-check { display: flex; align-items: baseline; gap: 10px; font-size: 15px; line-height: 1.5; color: var(--body); }
+.sim-check::before { content: ""; flex: none; width: 8px; height: 8px; background: var(--pink); }
+.sim-check[data-ok="true"]::before { background: var(--acid); }
+.sim-check[data-ok="skip"]::before { background: transparent; box-shadow: inset 0 0 0 1px var(--muted); }
+.sim-rest { margin: 10px 0 0; font-family: var(--mono); font-size: 12px; color: var(--muted); }
+
 /* Secondary projects */
 .cards { display: flex; flex-wrap: wrap; gap: 24px; margin-top: 24px; }
-.card { flex: 1 1 340px; min-width: 0; padding: 32px; border: 1px solid var(--line); background: var(--surface); }
+.card { position: relative; flex: 1 1 340px; min-width: 0; padding: 32px; border: 1px solid var(--line); background: var(--surface); transition: border-color 0.25s; }
+.card:hover,
+.card:focus-within { border-color: rgba(255, 255, 255, 0.24); }
+/* The whole card is the link: one focusable element, named for screen readers */
+.card-link::after { content: ""; position: absolute; inset: 0; }
+/* Mouse only: the border lights up under the cursor (position set by main.js) */
+@media (hover: hover) and (pointer: fine) {
+  .card::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    padding: 1px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+    background: radial-gradient(260px circle at var(--x, 50%) var(--y, 50%), rgba(255, 0, 255, 0.9), rgba(152, 36, 229, 0.35) 45%, transparent 70%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  }
+  .card:hover::before { opacity: 1; }
+}
 .card .kicker { color: var(--muted); }
 .card h3 { margin: 14px 0 0; font-size: 34px; line-height: 1.1; color: #fff; }
 .card p { margin: 14px 0 0; font-size: 16px; line-height: 1.65; font-weight: 300; color: var(--body); }
@@ -469,24 +545,38 @@ h1 {
    Without support it is a static band in the sheet color. */
 .sheet {
   position: relative;
+  isolation: isolate;
   background: var(--sheet);
   border-top: 1px solid rgba(255, 0, 255, 0.35);
   border-radius: 28px 28px 0 0;
-  padding-top: clamp(56px, 8vw, 96px);
+  padding-top: clamp(48px, 6vw, 72px);
 }
+/* Only transform and opacity move, so the compositor runs it without
+   repainting: the sheet's color sits on a pseudo-element that fades in. */
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
     .sheet {
-      animation: sheet-in linear both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 60%;
+      background: transparent;
+      view-timeline: --sheet block;
+      animation: sheet-rise linear both;
+      animation-timeline: --sheet;
+      animation-range: entry 0% entry 50%;
+    }
+    .sheet::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      border-radius: inherit;
+      background: var(--sheet);
+      animation: sheet-tint linear both;
+      animation-timeline: --sheet;
+      animation-range: entry 0% entry 50%;
     }
   }
 }
-@keyframes sheet-in {
-  from { transform: translateY(18vh); background-color: var(--ground); }
-  to { transform: translateY(0); background-color: var(--sheet); }
-}
+@keyframes sheet-rise { from { transform: translateY(12vh); } to { transform: none; } }
+@keyframes sheet-tint { from { opacity: 0; } to { opacity: 1; } }
 
 /* --- Dock ------------------------------------------------------------------
    Scrolling down, the header folds into a hex block parked top right.
@@ -554,7 +644,6 @@ h1 {
   background: linear-gradient(135deg, rgba(255, 0, 255, 0.34), rgba(152, 36, 229, 0.3));
   clip-path: polygon(95% 50%, 72.5% 89%, 27.5% 89%, 5% 50%, 27.5% 11%, 72.5% 11%);
   transform-origin: 0 0;
-  will-change: transform, clip-path, opacity;
 }
 
 /* Panel that opens out of the block, built from the page's sections */
@@ -643,7 +732,9 @@ h1 {
 /* --- Motion (only when the visitor allows it) ------------------------------ */
 /* One authored moment: the hero rises in once. The rings turn very slowly. */
 @keyframes spin { to { transform: rotate(360deg); } }
-@keyframes rise { from { opacity: 0; transform: translateY(14px); } }
+/* Transform only, no fade: text is painted on the first frame, so the
+   largest contentful paint is not held back by the animation. */
+@keyframes rise { from { transform: translateY(12px); } }
 
 @media (prefers-reduced-motion: no-preference) {
   .hero-copy > *,
@@ -660,4 +751,5 @@ h1 {
   html { scroll-behavior: auto; }
   .btn { transition: none; }
   .site-header.is-docked > * { transform: none; filter: none; }
+  .sim-seg { transition: none; }
 }
