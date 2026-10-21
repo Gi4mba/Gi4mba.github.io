@@ -22,6 +22,7 @@
   --acid: #d4ff00;     /* primary action and status marks */
   --violet: #9824e5;   /* background fog */
   --pink: #ffb3f7;     /* italic emphasis */
+  --sheet: #120a1c;    /* the colored sheet that slides over the page */
 
   --heading: #f6f2fb;
   --text: #efeaf7;
@@ -461,6 +462,30 @@ h1 {
 /* --- 404 / redirect stubs ------------------------------------------------- */
 .lost { min-height: 100dvh; display: grid; place-content: center; gap: 24px; padding: var(--gutter); text-align: center; justify-items: center; }
 .lost h1 { margin: 0; }
+
+/* Colored sheet: the contact block rises over the page as you scroll.
+   Scroll-driven: the scroll position is the timeline, no JavaScript.
+   Without support it is a static band in the sheet color. */
+.sheet {
+  position: relative;
+  background: var(--sheet);
+  border-top: 1px solid rgba(255, 0, 255, 0.35);
+  border-radius: 28px 28px 0 0;
+  padding-top: clamp(56px, 8vw, 96px);
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .sheet {
+      animation: sheet-in linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 60%;
+    }
+  }
+}
+@keyframes sheet-in {
+  from { transform: translateY(18vh); background-color: var(--ground); }
+  to { transform: translateY(0); background-color: var(--sheet); }
+}
 
 /* --- Responsive ----------------------------------------------------------- */
 @media (max-width: 640px) {
