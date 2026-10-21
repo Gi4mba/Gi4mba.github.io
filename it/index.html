@@ -58,6 +58,22 @@
 <body>
   <a class="skip" href="#main">Vai al contenuto</a>
   <div class="atmos" aria-hidden="true"></div>
+  <div class="dock-sentinel" aria-hidden="true"></div>
+  <div class="dock" data-state="off" data-label-open="Apri navigazione" data-label-close="Chiudi navigazione">
+    <div class="dock-ghost" aria-hidden="true"></div>
+    <nav class="dock-panel" id="dock-panel" aria-label="Sezioni" hidden>
+      <p class="dock-head"><span class="dock-who">Giovanni Battista Avella</span><span class="dock-role"></span></p>
+      <ol class="dock-list"></ol>
+      <div class="dock-foot"></div>
+    </nav>
+    <button class="dock-block" type="button" aria-expanded="false" aria-controls="dock-panel" aria-label="Apri navigazione">
+      <svg class="dock-hex" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+        <polygon class="hex-fill" points="60.8,32 46.4,56.96 17.6,56.96 3.2,32 17.6,7.04 46.4,7.04"/>
+        <polygon class="hex-progress" pathLength="100" points="60.8,32 46.4,56.96 17.6,56.96 3.2,32 17.6,7.04 46.4,7.04"/>
+        <text x="32" y="37" text-anchor="middle">GB</text>
+      </svg>
+    </button>
+  </div>
 
   <div class="page">
     <header class="site-header wrap">
@@ -72,11 +88,11 @@
         <a class="nav-link" href="#work">Progetti</a>
         <a class="nav-link" href="#stack">Stack</a>
         <a class="nav-link" href="#contact">Contatti</a>
-        <div class="lang" role="group" aria-label="Lingua">
-          <a href="/" hreflang="en" lang="en">EN</a>
-          <a href="/it/" hreflang="it" lang="it" aria-current="true">IT</a>
-        </div>
       </nav>
+      <div class="lang" role="group" aria-label="Lingua">
+        <a href="/" hreflang="en" lang="en">EN</a>
+        <a href="/it/" hreflang="it" lang="it" aria-current="true">IT</a>
+      </div>
     </header>
 
     <main id="main">
@@ -133,9 +149,10 @@
           </div>
           <dl class="spec spec--lg feature-spec">
             <div><dt>Fasi</dt><dd>Vendita quote, poi voto</dd></div>
-            <div><dt>Regola di voto</dt><dd>Quorum 40% · favorevoli oltre il 50% di favorevoli + contrari</dd></div>
-            <div><dt>Test</dt><dd>46 test Foundry, 2 di tipo fuzz · CI a ogni push</dd></div>
-            <div><dt>Stack</dt><dd>Solidity · Foundry · OpenZeppelin</dd></div>
+            <div><dt>Quorum</dt><dd>Vota almeno il 40% delle quote</dd></div>
+            <div><dt>Approvazione</dt><dd>Più favorevoli che contrari</dd></div>
+            <div><dt>Test</dt><dd>46 in Foundry, 2 di tipo fuzz</dd></div>
+            <div><dt>CI</dt><dd>fmt, build e test a ogni push</dd></div>
           </dl>
         </article>
 

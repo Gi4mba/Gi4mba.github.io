@@ -58,6 +58,22 @@
 <body>
   <a class="skip" href="#main">Skip to content</a>
   <div class="atmos" aria-hidden="true"></div>
+  <div class="dock-sentinel" aria-hidden="true"></div>
+  <div class="dock" data-state="off" data-label-open="Open navigation" data-label-close="Close navigation">
+    <div class="dock-ghost" aria-hidden="true"></div>
+    <nav class="dock-panel" id="dock-panel" aria-label="Sections" hidden>
+      <p class="dock-head"><span class="dock-who">Giovanni Battista Avella</span><span class="dock-role"></span></p>
+      <ol class="dock-list"></ol>
+      <div class="dock-foot"></div>
+    </nav>
+    <button class="dock-block" type="button" aria-expanded="false" aria-controls="dock-panel" aria-label="Open navigation">
+      <svg class="dock-hex" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+        <polygon class="hex-fill" points="60.8,32 46.4,56.96 17.6,56.96 3.2,32 17.6,7.04 46.4,7.04"/>
+        <polygon class="hex-progress" pathLength="100" points="60.8,32 46.4,56.96 17.6,56.96 3.2,32 17.6,7.04 46.4,7.04"/>
+        <text x="32" y="37" text-anchor="middle">GB</text>
+      </svg>
+    </button>
+  </div>
 
   <div class="page">
     <header class="site-header wrap">
@@ -72,11 +88,11 @@
         <a class="nav-link" href="#work">Work</a>
         <a class="nav-link" href="#stack">Stack</a>
         <a class="nav-link" href="#contact">Contact</a>
-        <div class="lang" role="group" aria-label="Language">
-          <a href="/" hreflang="en" lang="en" aria-current="true">EN</a>
-          <a href="/it/" hreflang="it" lang="it">IT</a>
-        </div>
       </nav>
+      <div class="lang" role="group" aria-label="Language">
+        <a href="/" hreflang="en" lang="en" aria-current="true">EN</a>
+        <a href="/it/" hreflang="it" lang="it">IT</a>
+      </div>
     </header>
 
     <main id="main">
@@ -133,9 +149,10 @@
           </div>
           <dl class="spec spec--lg feature-spec">
             <div><dt>Phases</dt><dd>Share sale, then voting</dd></div>
-            <div><dt>Voting rule</dt><dd>40% quorum · For above 50% of For + Against</dd></div>
-            <div><dt>Tests</dt><dd>46 Foundry tests, 2 of them fuzz · CI on every push</dd></div>
-            <div><dt>Stack</dt><dd>Solidity · Foundry · OpenZeppelin</dd></div>
+            <div><dt>Quorum</dt><dd>40% of shares must vote</dd></div>
+            <div><dt>Approval</dt><dd>More For than Against</dd></div>
+            <div><dt>Tests</dt><dd>46 in Foundry, 2 of them fuzz</dd></div>
+            <div><dt>CI</dt><dd>fmt, build, test on every push</dd></div>
           </dl>
         </article>
 

@@ -209,7 +209,7 @@ img, svg { max-width: 100%; }
   color: var(--muted);
 }
 
-.site-nav { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 28px; }
+.site-nav { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 28px; margin-left: auto; }
 .nav-link {
   display: inline-flex;
   align-items: center;
@@ -262,6 +262,7 @@ img, svg { max-width: 100%; }
   color: var(--acid);
 }
 .eyebrow::before { content: ""; width: 8px; height: 8px; background: var(--acid); flex: none; }
+.eyebrow { text-wrap: balance; }
 
 h1, h2, h3 { font-family: var(--serif); font-weight: 500; color: var(--heading); text-wrap: balance; }
 h1 em, h2 em { font-style: italic; color: var(--pink); }
@@ -327,7 +328,7 @@ h1 {
   padding: 11px 0;
   border-top: 1px solid var(--line);
 }
-.spec dt { color: var(--muted); text-transform: uppercase; }
+.spec dt { color: var(--muted); text-transform: uppercase; white-space: nowrap; }
 .spec dd { margin: 0; color: var(--text); text-align: right; }
 .spec--lg > div { padding: 14px 0; }
 .spec--lg > div:last-child { border-bottom: 1px solid var(--line); }
@@ -487,10 +488,149 @@ h1 {
   to { transform: translateY(0); background-color: var(--sheet); }
 }
 
+/* --- Dock ------------------------------------------------------------------
+   Scrolling down, the header folds into a hex block parked top right.
+   The motion lives in main.js (spring physics on the Web Animations API);
+   this file holds the resting states. Without JS the dock never appears. */
+
+/* Header items fold toward the corner while the dock takes over */
+.site-header > * {
+  transition:
+    opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.35s ease-out;
+}
+.site-header > :nth-child(2) { transition-delay: 40ms; }
+.site-header > :nth-child(3) { transition-delay: 80ms; }
+.site-header.is-docked > * {
+  opacity: 0;
+  transform: translateX(28px) scale(0.96);
+  filter: blur(3px);
+  pointer-events: none;
+  transition-delay: 0s;
+}
+
+.dock-sentinel { position: absolute; top: 0; left: 0; width: 1px; height: 48px; pointer-events: none; }
+
+.dock { position: fixed; top: 16px; right: 16px; z-index: 30; width: 56px; height: 56px; }
+
+.dock-block {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+.dock[data-state="off"] .dock-block { visibility: hidden; }
+
+.dock-hex { display: block; width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 6px 14px rgba(255, 0, 255, 0.28)); }
+.dock-hex .hex-fill { fill: #120a1c; stroke: var(--signal); stroke-width: 2; stroke-linejoin: round; transition: fill 0.2s; }
+.dock-block:hover .hex-fill,
+.dock-block.is-pressed .hex-fill,
+.dock[data-state="open"] .hex-fill { fill: #22102f; }
+.dock-hex .hex-progress { fill: none; stroke: var(--acid); stroke-width: 2.5; stroke-linejoin: round; stroke-dasharray: 100; stroke-dashoffset: 100; }
+.dock-hex text { fill: var(--text); font: 500 15px var(--mono); letter-spacing: 0.02em; }
+
+/* The acid outline fills up as you read: page scroll is its timeline */
+@supports (animation-timeline: scroll()) {
+  .dock-hex .hex-progress { animation: hex-read linear both; animation-timeline: scroll(root); }
+}
+@keyframes hex-read { to { stroke-dashoffset: 0; } }
+
+/* Stand-in that morphs between the header bar and the hexagon */
+.dock-ghost {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(135deg, rgba(255, 0, 255, 0.34), rgba(152, 36, 229, 0.3));
+  clip-path: polygon(95% 50%, 72.5% 89%, 27.5% 89%, 5% 50%, 27.5% 11%, 72.5% 11%);
+  transform-origin: 0 0;
+  will-change: transform, clip-path, opacity;
+}
+
+/* Panel that opens out of the block, built from the page's sections */
+.dock-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  width: min(340px, calc(100vw - 32px));
+  padding: 84px 8px 12px;
+  background: #0d0915;
+  border: 1px solid rgba(255, 0, 255, 0.32);
+  border-radius: 16px;
+  box-shadow: 0 24px 48px -16px rgba(0, 0, 0, 0.7);
+}
+.dock-panel[hidden] { display: none; }
+
+.dock-head { position: absolute; top: 16px; left: 22px; right: 80px; display: grid; gap: 2px; margin: 0; }
+.dock-who { font: 500 12px var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--text); }
+.dock-role { font-size: 13px; line-height: 1.35; color: var(--muted); text-wrap: balance; }
+
+.dock-list { margin: 0; padding: 0; list-style: none; }
+.dock-list a {
+  display: grid;
+  gap: 4px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  color: var(--text);
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+.dock-list a:hover { background: rgba(255, 255, 255, 0.05); }
+.dock-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font: 500 11px var(--mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.dock-list a[aria-current] .dock-name { color: var(--acid); }
+.dock-list a[aria-current] .dock-name::after { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--acid); }
+.dock-line {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-family: var(--serif);
+  font-size: 20px;
+  line-height: 1.2;
+  color: var(--heading);
+}
+.dock-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 8px;
+  padding: 12px 14px 0;
+  border-top: 1px solid var(--line);
+}
+
 /* --- Responsive ----------------------------------------------------------- */
 @media (max-width: 640px) {
-  .brand-name,
-  .nav-link { display: none; }
+  .brand-name { display: none; }
+  .lang { margin-left: auto; }
+  /* Section links get their own row under logo and language */
+  .site-nav {
+    order: 3;
+    flex-basis: 100%;
+    margin-left: 0;
+    justify-content: space-between;
+    gap: 0 16px;
+    border-top: 1px solid var(--line);
+  }
 }
 @media (max-width: 560px) {
   .cta-row .btn { flex: 1 1 100%; min-height: 52px; }
@@ -519,4 +659,5 @@ h1 {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .btn { transition: none; }
+  .site-header.is-docked > * { transform: none; filter: none; }
 }
