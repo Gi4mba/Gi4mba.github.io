@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://gi4mba.github.io/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gi4mba.github.io/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://gi4mba.github.io/it/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gi4mba.github.io/"/>
+  </url>
+  <url>
+    <loc>https://gi4mba.github.io/it/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gi4mba.github.io/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://gi4mba.github.io/it/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gi4mba.github.io/"/>
+  </url>
+</urlset>
