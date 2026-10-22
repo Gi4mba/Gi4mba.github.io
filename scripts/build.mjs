@@ -1,7 +1,8 @@
 // Builds the static site into _site/.
 //
-//   node scripts/build.mjs                     flag from site.config.json
-//   FEATURE_PROJECTS=on node scripts/build.mjs  override (on | off)
+//   node scripts/build.mjs                    flag from site.config.json
+//   node scripts/build.mjs --projects=on      override for a local preview (on | off)
+//   FEATURE_PROJECTS=on node scripts/build.mjs  same override, as an environment variable
 //
 // Sources stay plain HTML. The build only fills two kinds of marker:
 //   <!-- build:work -->      home: featured project + cards (+ link to all projects)
@@ -18,7 +19,8 @@ const SITE = 'https://gi4mba.github.io';
 
 // ---- Config and flag --------------------------------------------------------
 const config = JSON.parse(readFileSync(join(ROOT, 'site.config.json'), 'utf8'));
-const env = process.env.FEATURE_PROJECTS;
+const arg = process.argv.find((a) => a.startsWith('--projects='));
+const env = arg ? arg.split('=')[1] : process.env.FEATURE_PROJECTS;
 if (env && !['on', 'off'].includes(env)) throw new Error(`FEATURE_PROJECTS must be "on" or "off", got "${env}"`);
 const PROJECTS_PAGE = env ? env === 'on' : config.features.projectsPage === true;
 
