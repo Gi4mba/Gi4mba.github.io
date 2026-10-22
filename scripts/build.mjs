@@ -122,7 +122,7 @@ function renderWork(lang) {
       '<article class="card">',
       `  <p class="kicker">${esc(p.stack.join(' · '))}</p>`,
       `  <h3>${esc(p.title)}</h3>`,
-      `  <p>${esc(p.summary[lang])}</p>`,
+      `  <p>${esc((p.teaser ?? p.summary)[lang])}</p>`, // short line for the home; the full summary lives on /projects
       `  <a class="link-mono card-link" href="${esc(p.repo)}" target="_blank" rel="noopener" aria-label="${esc(`${p.title} ${T[lang].on}`)}">GitHub</a>`,
       '</article>',
     ].join('\n');
@@ -222,7 +222,7 @@ function renderSnippet(p, lang) {
   const body = p.code.map((l) => highlight(l, p.code.lang)).join('\n');
   return [
     '<figure class="snippet">',
-    `  <figcaption class="snippet-head"><span>// ${esc(file)}</span><a class="link-mono" href="${esc(url)}" target="_blank" rel="noopener">L${from}–${to}</a></figcaption>`,
+    `  <figcaption class="snippet-head"><span>// ${esc(file).replace(/\//g, "/<wbr>")}</span><a class="link-mono" href="${esc(url)}" target="_blank" rel="noopener">L${from}–${to}</a></figcaption>`,
     '  <div class="snippet-body">',
     `    <pre class="snippet-ln" aria-hidden="true">${nums}</pre>`,
     `    <pre class="snippet-code" tabindex="0"><code>${body}</code></pre>`,

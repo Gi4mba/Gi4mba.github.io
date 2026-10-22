@@ -12,20 +12,31 @@
     "wagmi",
     "IPFS"
   ],
-  "summary": {
-    "en": "E-commerce dApp with IPFS support.",
-    "it": "Una dApp e-commerce con supporto a IPFS."
+  "teaser": {
+    "en": "Organic food shop paid in ETH on Sepolia: wallet through Reown AppKit, payment sent with wagmi and confirmed on its receipt.",
+    "it": "Negozio di prodotti bio pagato in ETH su Sepolia: wallet con Reown AppKit, pagamento inviato con wagmi e confermato dalla ricevuta."
   },
+  "summary": {
+    "en": "Organic food shop that takes payment in ETH on Sepolia. The wallet connects through Reown AppKit, the cart lives in a Zustand store, and checkout sends a native ETH transfer with wagmi, then waits for the receipt before confirming the order. Product images are served from IPFS.",
+    "it": "Negozio di prodotti bio che accetta pagamenti in ETH su Sepolia. Il wallet si collega con Reown AppKit, il carrello vive in uno store Zustand e il checkout invia un trasferimento ETH con wagmi, poi aspetta la ricevuta prima di confermare l'ordine. Le immagini dei prodotti arrivano da IPFS."
+  },
+  "spec": [
+    { "en": ["Network", "Sepolia testnet"], "it": ["Rete", "Testnet Sepolia"] },
+    { "en": ["Wallet", "Reown AppKit + wagmi"], "it": ["Wallet", "Reown AppKit + wagmi"] },
+    { "en": ["State", "Cart in a Zustand store"], "it": ["Stato", "Carrello in uno store Zustand"] },
+    { "en": ["Checkout", "Balance check, then wait for the receipt"], "it": ["Checkout", "Controllo del saldo, poi attesa della ricevuta"] },
+    { "en": ["Images", "IPFS through the Filebase gateway"], "it": ["Immagini", "IPFS tramite il gateway Filebase"] }
+  ],
   "snippet": {
-    "file": "src/hooks/usePayments.ts",
+    "file": "src/pages/CheckoutPage.tsx",
     "lines": [
-      35,
-      40
+      44,
+      65
     ],
     "commit": "cf3df8c6a853cec016cae77db97d946a5496d3fa",
     "caption": {
-      "en": "usePayment(): ETH converted to wei, then sent through wagmi.",
-      "it": "usePayment(): ETH convertiti in wei, poi inviati con wagmi."
+      "en": "Checkout effect: a ref remembers the tx hash already handled, so a re-render never saves the order or clears the cart twice.",
+      "it": "Effect del checkout: un ref ricorda l'hash già gestito, così un nuovo render non salva l'ordine né svuota il carrello due volte."
     }
   }
 }
