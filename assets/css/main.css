@@ -602,7 +602,10 @@ h1 {
 
 .dock-sentinel { position: absolute; top: 0; left: 0; width: 1px; height: 48px; pointer-events: none; }
 
-.dock { position: fixed; top: 16px; right: 16px; z-index: 30; width: 56px; height: 56px; }
+/* The dock box sits over the header's corner even while the block is hidden,
+   so the box itself lets taps through; only the block and panel catch them. */
+.dock { position: fixed; top: 16px; right: 16px; z-index: 30; width: 56px; height: 56px; pointer-events: none; }
+.dock-block, .dock-panel { pointer-events: auto; }
 
 .dock-block {
   position: relative;
