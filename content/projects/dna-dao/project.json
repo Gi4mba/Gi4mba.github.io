@@ -1,0 +1,18 @@
+{
+  "title": "DnA-DAO",
+  "updated": "2026-10",
+  "repo": "https://github.com/Gi4mba/DnA-DAO",
+  "area": { "en": "Governance", "it": "Governance" },
+  "stack": ["Solidity", "Foundry", "OpenZeppelin"],
+  "summary": {
+    "en": "Direct-democracy governance. Members buy shares with an ERC-20 token, then vote on proposals themselves. Sales close once and for good, so voting weight stays fixed and no snapshot is needed.",
+    "it": "Governance a democrazia diretta. I membri comprano quote con un token ERC-20 e votano le proposte in prima persona. La vendita si chiude una volta sola, senza ritorno: il peso di voto resta fisso e non serve nessuno snapshot."
+  },
+  "spec": [
+    { "en": ["Phases", "Share sale, then voting"], "it": ["Fasi", "Vendita quote, poi voto"] },
+    { "en": ["Quorum", "40% of shares must vote"], "it": ["Quorum", "Vota almeno il 40% delle quote"] },
+    { "en": ["Approval", "More For than Against"], "it": ["Approvazione", "Più favorevoli che contrari"] },
+    { "en": ["Tests", "46 in Foundry, 2 of them fuzz"], "it": ["Test", "46 in Foundry, 2 di tipo fuzz"] },
+    { "en": ["CI", "fmt, build, test on every push"], "it": ["CI", "fmt, build e test a ogni push"] }
+  ]
+}

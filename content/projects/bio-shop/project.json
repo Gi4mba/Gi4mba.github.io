@@ -1,0 +1,11 @@
+{
+  "title": "Bio-shop",
+  "updated": "2026-05",
+  "repo": "https://github.com/Gi4mba/Bio-shop",
+  "area": { "en": "E-commerce", "it": "E-commerce" },
+  "stack": ["TypeScript", "IPFS"],
+  "summary": {
+    "en": "E-commerce dApp with IPFS support.",
+    "it": "Una dApp e-commerce con supporto a IPFS."
+  }
+}

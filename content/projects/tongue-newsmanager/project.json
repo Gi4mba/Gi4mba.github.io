@@ -1,0 +1,11 @@
+{
+  "title": "Tongue-NewsManager",
+  "updated": "2026-08",
+  "repo": "https://github.com/Gi4mba/Tongue-NewsManager",
+  "area": { "en": "Social", "it": "Social" },
+  "stack": ["Solidity"],
+  "summary": {
+    "en": "Smart contracts for the backend of a social project that serves verified news, with validation handled by appointed users.",
+    "it": "Smart contract per il backend di un progetto social che pubblica notizie verificate, validate da utenti incaricati."
+  }
+}
