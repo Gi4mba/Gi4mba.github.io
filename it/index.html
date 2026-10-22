@@ -124,7 +124,7 @@
           </svg>
           <dl class="spec">
             <div><dt>on-chain</dt><dd>Solidity · Foundry</dd></div>
-            <div><dt>off-chain</dt><dd>TypeScript · NestJS</dd></div>
+            <div><dt>off-chain</dt><dd>TypeScript · NestJS · React</dd></div>
             <div><dt>rilasciato</dt><dd>DnA-DAO, 46 test</dd></div>
             <div><dt>focus</dt><dd>Sicurezza dei contratti</dd></div>
           </dl>
@@ -135,84 +135,7 @@
         <p class="label">Lavori scelti</p>
         <h2 id="work-title">Un progetto a fondo, altri due in sintesi.</h2>
 
-        <article class="feature">
-          <div class="feature-main">
-            <p class="kicker">In evidenza · Governance</p>
-            <h3 class="feature-title">DnA-DAO</h3>
-            <p class="feature-text">Governance a democrazia diretta. I membri comprano quote con un token ERC-20 e votano le proposte in prima persona. La vendita si chiude una volta sola, senza ritorno: il peso di voto resta fisso e non serve nessuno snapshot.</p>
-            <ul class="tags">
-              <li>Solidity</li>
-              <li>Foundry</li>
-              <li>OpenZeppelin</li>
-            </ul>
-            <a class="btn btn--primary" href="https://github.com/Gi4mba/DnA-DAO" target="_blank" rel="noopener">Apri il repository</a>
-          </div>
-          <dl class="spec spec--lg feature-spec">
-            <div><dt>Fasi</dt><dd>Vendita quote, poi voto</dd></div>
-            <div><dt>Quorum</dt><dd>Vota almeno il 40% delle quote</dd></div>
-            <div><dt>Approvazione</dt><dd>Più favorevoli che contrari</dd></div>
-            <div><dt>Test</dt><dd>46 in Foundry, 2 di tipo fuzz</dd></div>
-            <div><dt>CI</dt><dd>fmt, build e test a ogni push</dd></div>
-          </dl>
-
-          <div class="sim" id="sim" data-total="1000" data-status="approved">
-            <h4 class="sim-title">Prova la regola di voto</h4>
-            <p class="sim-note">Una DAO con 1.000 quote. Sposta i voti: l'esito usa gli stessi controlli su numeri interi di <code>status()</code> nel contratto.</p>
-            <div class="sim-grid">
-              <div class="sim-controls">
-                <div class="sim-field" data-kind="for">
-                  <label for="sim-for">Favorevoli</label>
-                  <output id="sim-for-out" for="sim-for">300</output>
-                  <input id="sim-for" type="range" min="0" max="1000" step="1" value="300">
-                </div>
-                <div class="sim-field" data-kind="against">
-                  <label for="sim-against">Contrari</label>
-                  <output id="sim-against-out" for="sim-against">180</output>
-                  <input id="sim-against" type="range" min="0" max="1000" step="1" value="180">
-                </div>
-                <div class="sim-field" data-kind="abstain">
-                  <label for="sim-abstain">Astenuti</label>
-                  <output id="sim-abstain-out" for="sim-abstain">60</output>
-                  <input id="sim-abstain" type="range" min="0" max="1000" step="1" value="60">
-                </div>
-                <div class="sim-presets" role="group" aria-label="Casi limite dalla suite di test">
-                  <button type="button" data-preset="400,0,0">Esattamente 40%</button>
-                  <button type="button" data-preset="390,0,0">Affluenza 39%</button>
-                  <button type="button" data-preset="250,250,0">Pareggio</button>
-                  <button type="button" data-preset="251,250,0">Vinta per una quota</button>
-                  <button type="button" data-preset="0,0,500">Tutti astenuti</button>
-                </div>
-              </div>
-              <div class="sim-outcome">
-                <p class="sim-status" data-status="approved" aria-live="polite">Approvata</p>
-                <div class="sim-bar" aria-hidden="true">
-                  <span class="sim-seg sim-seg-for"></span><span class="sim-seg sim-seg-against"></span><span class="sim-seg sim-seg-abstain"></span>
-                  <span class="sim-quorum"></span>
-                </div>
-                <ul class="sim-checks">
-                  <li class="sim-check" data-ok="true">Quorum raggiunto: ha votato il 54% delle quote, serve il 40%</li>
-                  <li class="sim-check" data-ok="true">Più favorevoli che contrari: 300 a 180</li>
-                </ul>
-                <p class="sim-rest">460 quote non hanno votato</p>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <div class="cards">
-          <article class="card">
-            <p class="kicker">Solidity</p>
-            <h3>Tongue-NewsManager</h3>
-            <p>Smart contract per il backend di un progetto social che pubblica notizie verificate, validate da utenti incaricati.</p>
-            <a class="link-mono card-link" href="https://github.com/Gi4mba/Tongue-NewsManager" target="_blank" rel="noopener" aria-label="Tongue-NewsManager su GitHub">GitHub</a>
-          </article>
-          <article class="card">
-            <p class="kicker">TypeScript · IPFS</p>
-            <h3>Bio-shop</h3>
-            <p>Una dApp e-commerce con supporto a IPFS.</p>
-            <a class="link-mono card-link" href="https://github.com/Gi4mba/Bio-shop" target="_blank" rel="noopener" aria-label="Bio-shop su GitHub">GitHub</a>
-          </article>
-        </div>
+        <!-- build:work -->
       </section>
 
       <section class="section wrap" id="stack" aria-labelledby="stack-title">
@@ -240,7 +163,7 @@
       <section class="section wrap" id="path" aria-labelledby="path-title">
         <p class="label" id="path-title">Percorso</p>
         <ol class="path">
-          <li><span class="path-when">2024–2025</span><span class="path-what">Master in Blockchain Developing · Start2Impact</span></li>
+          <li><span class="path-when">2024–2026</span><span class="path-what">Master in Blockchain Development &amp; AI · Start2Impact</span></li>
           <li><span class="path-when">Dic 2024</span><span class="path-what">Corso di Cybersecurity, test finale superato · Learnn</span></li>
         </ol>
       </section>

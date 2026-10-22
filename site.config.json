@@ -1,0 +1,9 @@
+{
+  "features": {
+    "projectsPage": false
+  },
+  "home": {
+    "featured": "dna-dao",
+    "cards": ["tongue-newsmanager", "bio-shop"]
+  }
+}

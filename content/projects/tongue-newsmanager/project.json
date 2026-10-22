@@ -1,0 +1,39 @@
+{
+  "title": "Tongue-NewsManager",
+  "updated": "2026-08",
+  "repo": "https://github.com/Gi4mba/Tongue-NewsManager",
+  "area": {
+    "en": "Social",
+    "it": "Social"
+  },
+  "stack": [
+    "Solidity"
+  ],
+  "teaser": {
+    "en": "On-chain news verification: appointed validators confirm and rate each item, building reputation and claiming an ETH reward.",
+    "it": "Verifica delle notizie on-chain: validatori incaricati confermano e votano ogni notizia, costruiscono reputazione e ritirano una ricompensa in ETH."
+  },
+  "summary": {
+    "en": "On-chain news verification. The owner appoints validators; each one confirms a news item before its deadline and rates it 1 to 5. Once enough confirmations arrive the news is confirmed, each rating counts toward the reputation of the other validators who confirmed it, and every validator can claim a fixed ETH reward from a pool.",
+    "it": "Verifica delle notizie on-chain. L'owner nomina i validatori; ognuno conferma una notizia entro la scadenza e le dà un voto da 1 a 5. Raggiunte le conferme minime la notizia è confermata, ogni voto alimenta la reputazione degli altri validatori che l'hanno confermata e ognuno può ritirare una ricompensa fissa in ETH da un pool."
+  },
+  "spec": [
+    { "en": ["Roles", "Owner, publishers, validators"], "it": ["Ruoli", "Owner, chi pubblica, validatori"] },
+    { "en": ["Confirmation", "Minimum validations set at deploy"], "it": ["Conferma", "Soglia minima fissata al deploy"] },
+    { "en": ["Reputation", "Average rating from co-validators"], "it": ["Reputazione", "Media dei voti degli altri validatori"] },
+    { "en": ["Rewards", "Pull payment: each validator claims"], "it": ["Ricompense", "Pull payment: ogni validatore ritira"] },
+    { "en": ["Errors", "16 custom errors, no revert strings"], "it": ["Errori", "16 custom error, niente stringhe"] }
+  ],
+  "snippet": {
+    "file": "NewsManager.sol",
+    "lines": [
+      232,
+      241
+    ],
+    "commit": "66f04e89992f91666b595b11a9ea39be247ff160",
+    "caption": {
+      "en": "validateNews(): checks first, then effects, then the event.",
+      "it": "validateNews(): prima i controlli, poi gli effetti, poi l'evento."
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "gi4mba.github.io",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/build.mjs && node scripts/serve.mjs 8080",
+    "dev:projects": "node scripts/build.mjs --projects=on && node scripts/serve.mjs 8080"
+  }
+}
