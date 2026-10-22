@@ -2,10 +2,30 @@
   "title": "Bio-shop",
   "updated": "2026-05",
   "repo": "https://github.com/Gi4mba/Bio-shop",
-  "area": { "en": "E-commerce", "it": "E-commerce" },
-  "stack": ["TypeScript", "React", "wagmi", "IPFS"],
+  "area": {
+    "en": "E-commerce",
+    "it": "E-commerce"
+  },
+  "stack": [
+    "TypeScript",
+    "React",
+    "wagmi",
+    "IPFS"
+  ],
   "summary": {
     "en": "E-commerce dApp with IPFS support.",
     "it": "Una dApp e-commerce con supporto a IPFS."
+  },
+  "snippet": {
+    "file": "src/hooks/usePayments.ts",
+    "lines": [
+      35,
+      40
+    ],
+    "commit": "cf3df8c6a853cec016cae77db97d946a5496d3fa",
+    "caption": {
+      "en": "usePayment(): ETH converted to wei, then sent through wagmi.",
+      "it": "usePayment(): ETH convertiti in wei, poi inviati con wagmi."
+    }
   }
 }

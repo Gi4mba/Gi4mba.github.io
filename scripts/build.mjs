@@ -10,7 +10,8 @@
 // With the projects flag off, the projects pages are not copied at all:
 // the URL does not exist online.
 import { cpSync, existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
-import { dirname, join } from 'node:path';
+import { dirname, extname, join } from 'node:path';
+import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -40,7 +41,17 @@ const projects = readdirSync(DIR, { withFileTypes: true })
       if (!(key in p)) throw new Error(`${d.name}/project.json: missing "${key}"`);
     }
     if (!/^\d{4}-\d{2}$/.test(p.updated)) throw new Error(`${d.name}: "updated" must be YYYY-MM`);
-    return { id: d.name, ...p, extra };
+    let code = null;
+    if (p.snippet) {
+      // the code itself is a plain file next to project.json, copied verbatim from the repo
+      const f = readdirSync(base).find((n) => n.startsWith('snippet.'));
+      if (!f) throw new Error(`${d.name}: "snippet" set but no snippet.<ext> file`);
+      code = readFileSync(join(base, f), 'utf8').replace(/\r\n?/g, '\n').replace(/\n$/, '').split('\n'); // repos may use CRLF
+      const [from, to] = p.snippet.lines;
+      if (code.length !== to - from + 1) throw new Error(`${d.name}: snippet has ${code.length} lines, "lines" says ${to - from + 1}`);
+      code.lang = extname(f).slice(1);
+    }
+    return { id: d.name, ...p, extra, code };
   })
   .sort((a, b) => b.updated.localeCompare(a.updated)); // newest first
 
@@ -55,7 +66,16 @@ const T = {
   it: { featured: 'In evidenza', repo: 'Apri il repository', on: 'su GitHub', all: 'Tutti i progetti', path: '/it/progetti/' },
 };
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-const indent = (text, n) => text.split('\n').map((l) => (l ? ' '.repeat(n) + l : l)).join('\n');
+// Indents generated HTML, except inside <pre>: there whitespace is content.
+function indent(text, n) {
+  let inPre = false;
+  return text.split('\n').map((l) => {
+    const out = l && !inPre ? ' '.repeat(n) + l : l;
+    if (l.includes('<pre')) inPre = !l.includes('</pre>');
+    else if (l.includes('</pre>')) inPre = false;
+    return out;
+  }).join('\n');
+}
 const month = (ym, lang) => new Intl.DateTimeFormat(lang, { month: 'short', year: 'numeric', timeZone: 'UTC' })
   .format(new Date(`${ym}-01T00:00:00Z`));
 
@@ -121,7 +141,10 @@ function renderProjects(lang) {
     const side = [renderThumb(p), spec(p, lang, 'spec spec--lg')].filter(Boolean).join('\n');
     let body = main(p, lang, { heading: `<h2 class="feature-title" id="${p.id}-title">${esc(p.title)}</h2>` });
     if (side) body += `\n<div class="project-side">\n${indent(side, 2)}\n</div>`;
-    if (p.extra[lang]) body += `\n\n${p.extra[lang]}`;
+    if (p.code) body += `\n\n${renderSnippet(p, lang)}`;
+    // extras are written for the home, where the project title is an h3; here it is an h2,
+    // so their headings move up one level to keep the outline without gaps
+    if (p.extra[lang]) body += `\n\n${p.extra[lang].replace(/<(\/?)h([3-6])\b/g, (_, s, n) => `<${s}h${n - 1}`)}`;
     return indent([
       `<section class="section wrap project" id="${p.id}" aria-labelledby="${p.id}-title">`,
       `  <p class="label">${esc(month(p.updated, lang))} · ${esc(p.area[lang])}</p>`,
@@ -133,15 +156,80 @@ function renderProjects(lang) {
   }).join('\n\n');
 }
 
-// Thumbnail: a project can ship its own image (thumb.webp / thumb.png in its folder);
-// until a style is chosen there is no generated fallback.
+// Thumbnail: a project can ship its own image (thumb.webp / thumb.png / thumb.svg in its
+// folder). Otherwise the build draws its block signature: the project id hashed with
+// SHA-256, each byte deciding the colour of one hexagon. Same id, same picture, forever.
 function renderThumb(p) {
   for (const f of ['thumb.webp', 'thumb.png', 'thumb.svg']) {
     if (existsSync(join(DIR, p.id, f))) {
       return `<figure class="project-thumb"><img src="/assets/img/projects/${p.id}-${f}" alt="" width="640" height="400" loading="lazy" decoding="async"></figure>`;
     }
   }
-  return null;
+  const h = createHash('sha256').update(p.id).digest();
+  const hex = h.toString('hex');
+  const R = 22;
+  const W = Math.sqrt(3) * R; // width of a pointy-top hexagon
+  let cells = '';
+  for (let row = 0; row < 7; row++) {
+    for (let col = 0; col < 8; col++) {
+      const i = row * 8 + col;
+      const b = h[i % 32] ^ ((i * 37) & 255); // 56 cells from 32 bytes: mix in the index
+      const cx = 330 + col * W + (row % 2 ? W / 2 : 0);
+      const cy = 52 + row * R * 1.5;
+      const pts = [0, 1, 2, 3, 4, 5].map((k) => {
+        const a = (Math.PI / 180) * (60 * k - 30);
+        return `${(cx + R * 0.92 * Math.cos(a)).toFixed(1)},${(cy + R * 0.92 * Math.sin(a)).toFixed(1)}`;
+      }).join(' ');
+      const cls = b < 40 ? 'hx-a' : b < 90 ? 'hx-m' : b < 150 ? 'hx-v' : 'hx-o';
+      cells += `<polygon class="${cls}" points="${pts}"/>`;
+    }
+  }
+  return [
+    '<figure class="project-thumb">',
+    `  <svg class="sig" viewBox="0 0 640 400" aria-hidden="true" focusable="false">`,
+    `    <rect class="sig-bg" width="640" height="400"/>`,
+    `    ${cells}`,
+    `    <text class="sig-k" x="36" y="56">BLOCK · ${esc(p.updated)}</text>`,
+    `    <text class="sig-t" x="36" y="300">${esc(p.title)}</text>`,
+    `    <text class="sig-h" x="36" y="336">0x${hex.slice(0, 8)}…${hex.slice(-6)}</text>`,
+    `    <text class="sig-s" x="36" y="362">${esc(p.stack.join(' · ').toUpperCase())}</text>`,
+    '  </svg>',
+    '</figure>',
+  ].join('\n');
+}
+
+// Snippet: real code as text (selectable, searchable, read by screen readers),
+// with a light highlight done here so the page ships no highlighter.
+const KEYWORDS = {
+  sol: ['if', 'else', 'return', 'returns', 'function', 'external', 'public', 'internal', 'view', 'pure', 'storage', 'memory', 'emit', 'require', 'true', 'false'],
+  ts: ['const', 'let', 'await', 'async', 'return', 'if', 'else', 'function', 'true', 'false', 'new'],
+};
+function highlight(line, lang) {
+  const at = line.indexOf('//');
+  const codePart = at === -1 ? line : line.slice(0, at);
+  const comment = at === -1 ? '' : line.slice(at);
+  const kw = new RegExp(`\\b(${(KEYWORDS[lang] || []).join('|')})\\b`, 'g');
+  const html = esc(codePart)
+    .replace(kw, '<span class="tk-k">$1</span>')
+    .replace(/\b(\d+)\b/g, '<span class="tk-n">$1</span>');
+  return html + (comment ? `<span class="tk-c">${esc(comment)}</span>` : '');
+}
+function renderSnippet(p, lang) {
+  const { file, lines: [from, to], commit, caption } = p.snippet;
+  const url = `${p.repo}/blob/${commit}/${file}#L${from}-L${to}`;
+  // line numbers live in their own column, outside <code>: a copy gets only the code
+  const nums = p.code.map((_, i) => from + i).join('\n');
+  const body = p.code.map((l) => highlight(l, p.code.lang)).join('\n');
+  return [
+    '<figure class="snippet">',
+    `  <figcaption class="snippet-head"><span>// ${esc(file)}</span><a class="link-mono" href="${esc(url)}" target="_blank" rel="noopener">L${from}–${to}</a></figcaption>`,
+    '  <div class="snippet-body">',
+    `    <pre class="snippet-ln" aria-hidden="true">${nums}</pre>`,
+    `    <pre class="snippet-code" tabindex="0"><code>${body}</code></pre>`,
+    '  </div>',
+    `  <p class="snippet-note">${esc(caption[lang])}</p>`,
+    '</figure>',
+  ].join('\n');
 }
 
 // ---- Output -----------------------------------------------------------------
