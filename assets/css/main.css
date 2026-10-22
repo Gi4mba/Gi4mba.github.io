@@ -625,7 +625,9 @@ h1 {
 .dock-block:hover .hex-fill,
 .dock-block.is-pressed .hex-fill,
 .dock[data-state="open"] .hex-fill { fill: #22102f; }
-.dock-hex .hex-progress { fill: none; stroke: var(--acid); stroke-width: 2.5; stroke-linejoin: round; stroke-dasharray: 100; stroke-dashoffset: 100; }
+/* 173 = the hexagon's real perimeter in SVG units (no pathLength: some
+   engines ignore it on polygons). main.js has the same number. */
+.dock-hex .hex-progress { fill: none; stroke: var(--acid); stroke-width: 2.5; stroke-linejoin: round; stroke-dasharray: 173; stroke-dashoffset: 173; }
 .dock-hex text { fill: var(--text); font: 500 15px var(--mono); letter-spacing: 0.02em; }
 
 /* The acid outline fills up as you read: page scroll is its timeline */

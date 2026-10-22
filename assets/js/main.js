@@ -384,6 +384,27 @@
   }, { rootMargin: '-45% 0px -50% 0px' });
   sections.forEach((s) => spy.observe(s));
 
+  // ---- Reading progress on the hex outline ---------------------------------
+  // Browsers with scroll-driven animations do this in CSS. Elsewhere (Firefox,
+  // older Safari) a passive scroll listener does it, at most once per frame.
+  if (!CSS.supports('animation-timeline', 'scroll()')) {
+    const progress = block.querySelector('.hex-progress');
+    const PERIMETER = 173; // same as main.css
+    let ticking = false;
+    const paint = () => {
+      ticking = false;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+      progress.style.strokeDashoffset = String(PERIMETER * (1 - p));
+    };
+    const onScrollProgress = () => {
+      if (!ticking) { ticking = true; requestAnimationFrame(paint); }
+    };
+    window.addEventListener('scroll', onScrollProgress, { passive: true });
+    window.addEventListener('resize', onScrollProgress, { passive: true });
+    paint();
+  }
+
   // ---- Trigger: a sentinel at the top of the page --------------------------
   let first = true;
   new IntersectionObserver(([en]) => {
