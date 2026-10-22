@@ -1,143 +1,300 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Giovanni Battista Avella - Portfolio</title>
-  <meta property="og:title" content="Giovanni Battista Avella - Portfolio Home">
-  <meta property="og:description" content="Giovanni Battista Avella, Blockchain Developer - Solidity, HTML, CSS, JavaScript e React skills. CV, projects, Bio, About...">
-  <meta property="og:image" content="#">
-  <meta property="og:url" content="#">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Giovanni Battista Avella · Solidity and Blockchain Developer</title>
+  <meta name="description" content="Solidity and blockchain developer in Italy. Smart contracts built and tested with Foundry, plus the TypeScript layer around them. Featured: DnA-DAO.">
+  <meta name="theme-color" content="#07060c">
+  <meta name="color-scheme" content="dark">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.emailjs.com; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+
+  <link rel="canonical" href="https://gi4mba.github.io/">
+  <link rel="alternate" hreflang="en" href="https://gi4mba.github.io/">
+  <link rel="alternate" hreflang="it" href="https://gi4mba.github.io/it/">
+  <link rel="alternate" hreflang="x-default" href="https://gi4mba.github.io/">
+
   <meta property="og:type" content="website">
-  <meta property="og:locale" content="en_IT">
+  <meta property="og:site_name" content="Giovanni Battista Avella">
+  <meta property="og:title" content="Giovanni Battista Avella · Solidity and Blockchain Developer">
+  <meta property="og:description" content="Smart contracts built and tested with Foundry, plus the TypeScript layer around them. Featured: DnA-DAO, a direct-democracy governance contract.">
+  <meta property="og:url" content="https://gi4mba.github.io/">
+  <meta property="og:image" content="https://gi4mba.github.io/assets/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Giovanni Battista Avella, Blockchain and Solidity developer">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="it_IT">
+  <meta name="twitter:card" content="summary_large_image">
 
-  <link rel="icon" href="/assets/img/favicon/favicon.ico" type="image/x-icon">
-  <link rel="icon" href="/assets/img/favicon/favicon-16x16.png" sizes="16x16" type="image/png">
-  <link rel="icon" href="/assets/img/favicon/favicon-32x32.png" sizes="32x32" type="image/png">
-  <link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png">
-  <link rel="icon" href="/assets/img/favicon/android-chrome-192x192.png" sizes="192x192" type="image/png">
-  <link rel="icon" href="/assets/img/favicon/android-chrome-512x512.png" sizes="192x192" type="image/png">
-  <link rel="manifest" href="/assets/site.webmanifest.json">
-  <link rel="stylesheet" href="/assets/css/style.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.9.4/dist/css/uikit.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/img/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
 
+  <link rel="preload" href="/assets/fonts/cormorant-500.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/cormorant-500-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/plex-sans-300.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/main.css">
 
-<body>
-
-  <header class="header">
-    <div class="uk-flex uk-flex-between uk-flex-middle">
-      <a href="/">
-        <img alt="logo" loading="lazy" width="48" height="48" style="color:transparent" srcset="/assets/img/logo.png 1x, /assets/img/logo.png 2x" src="/assets/img/logo.png" class="logo">
-      </a>
-
-      <div class="menu-btn uk-flex uk-flex-middle">
-        <span class="menu-btn_burger"></span>
-      </div>
-      <nav class="nav">
-        <ul class="nav-menu uk-flex uk-flex-middle">
-          <li class="nav-menu_item"><a href="/" class="uk-text-bold active">Home</a></li>
-          <li class="nav-menu_item"><a href="/portfolio/about" class="uk-text-bold">About</a></li>
-          <!-- <li class="nav-menu_item"><a href="/portfolio/projects" class="uk-text-bold">Projects</a></li> -->
-          <li class="nav-menu_item"><a href="/portfolio/contact" class="uk-text-bold">Contact</a></li>
-        </ul>
-    </div>
-  </header>
-
-  <main>
-    <section class="uk-section uk-flex uk-flex-center uk-flex-middle">
-      <div class="uk-container uk-text-center">
-        <h1 class="uk-heading-large uk-text-light">Giovanni Battista Avella</h1>
-        <p class="uk-text-xlarge uk-text-light">Blockchain & Solidity Developer</p>
-        <hr class="divider">
-        <a href="#secondary-section" class="uk-button uk-button-default uk-button-large uk-margin-top uk-margin-bottom uk-button-cyberpunk" onclick="scrollToAbout">
-          Cornerstones
-        </a>
-      </div>
-    </section>
-  </main>
-
-  <span id="secondary-section"></span>
-
-  <section class="secondary-section">
-    <div class="uk-container uk-container-small secondary-div">
-      <div class="shadowed-container">
-        <div class="container">
-          <h2 class="my-vision">The future is now</h2>
-
-          <h4>Decentralization</h4>
-          <p>Control and management are distributed across indipendent entities: there is not a <strong>single point of failure</strong>. Network's resilience benefit from this.
-            Also risks of fraud and manipulation are moderately reduced. </p>
-
-          <h4>Transparency</h4>
-          <p>Data visibility is fairly <strong>accessible</strong> to all network participants and cannot be altered or deleted in any way. This openness ensure promoting:
-            <strong>accountability</strong>, <strong>trust</strong> and <strong>development</strong>.</p>
-
-          <h4>Security</h4>
-          <p>Security is achieved through consensus protocols and cryptographic techniques. Nodes must agree on every updates, enhancing <strong>data integrity</strong>.</p>
-
-          <h4>Smart Contracts</h4>
-          <p>Smart contracts are <strong>self-executing</strong> and <strong>deterministic</strong> agreements ensuring that no entity can ever achieve absolute data control. This paradigm shift
-            is driving <strong>innovation</strong>, fostering <strong>scalable</strong> and <strong>diverse solutions</strong>, besides expanding roles in the tech industry.</p>
-
-          <h4>Traceability</h4>
-          <p>The ultimate intrinsic property. Data is stored, time-stamped and linked to previous entries, generating an <strong>auditable history</strong>. Thus allowing the entire
-            product's lifecycle <strong>tracking</strong>, enhancing <strong>efficiency</strong> and <strong>reliability</strong>.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="social">
-      <div class="container">
-        <a href="https://www.linkedin.com/in/giovanni-battista-avella-1a915633b/" class="link" target="_blank" rel="noopener">
-          <i class="fa-brands fa-linkedin" id="linkedin">
-            <label class="label" for="linkedin">LinkedIn</label>
-          </i>
-        </a>
-      </div>
-
-      <div class="container">
-        <a href="https://x.com/gi4mba" class="link" target="_blank" rel="noopener">
-          <i class="fa-brands fa-twitter-square" id="x">
-            <label class="label" for="x">Twitter/X</label>
-          </i>
-        </a>
-      </div>
-
-      <div class="container">
-        <a href="https://www.instagram.com/giamba._/" class="link" target="_blank" rel="noopener">
-          <i class="fa-brands fa-instagram-square" id="instagram">
-            <label class="label" for="instagram">Instagram</label>
-          </i>
-        </a>
-      </div>
-
-      <div class="container">
-        <a href="https://github.com/Gi4mba" class="link" target="_blank" rel="noopener">
-          <i class="fa-brands fa-github-square" id="github">
-            <label class="label" for="github">GitHub</label>
-          </i>
-        </a>
-      </div>
-    </div>
-    <p class="copyright">© 2025 Giovanni Battista Avella | All rights Reserved</p>
-  </footer>
-
-  <script>
-    function scrollToAbout() {
-      document.getElementById('about').scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Giovanni Battista Avella",
+    "alternateName": "Giamba",
+    "jobTitle": "Solidity and Blockchain Developer",
+    "url": "https://gi4mba.github.io/",
+    "address": { "@type": "PostalAddress", "addressCountry": "IT" },
+    "sameAs": [
+      "https://github.com/Gi4mba",
+      "https://www.linkedin.com/in/giovanni-battista-avella-1a915633b/",
+      "https://x.com/gi4mba"
+    ],
+    "knowsAbout": ["Solidity", "Foundry", "Smart contracts", "DeFi", "TypeScript", "NestJS", "React"]
+  }
   </script>
-  <script src="/assets/js/menuAnimation.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/uikit@3.9.4/dist/js/uikit.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/uikit@3.9.4/dist/js/uikit-icons.min.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="atmos" aria-hidden="true"></div>
+  <div class="dock-sentinel" aria-hidden="true"></div>
+  <div class="dock" data-state="off" data-label-open="GB, open navigation" data-label-close="GB, close navigation">
+    <div class="dock-ghost" aria-hidden="true"></div>
+    <nav class="dock-panel" id="dock-panel" aria-label="Sections" hidden>
+      <p class="dock-head"><span class="dock-who">Giovanni Battista Avella</span><span class="dock-role"></span></p>
+      <ol class="dock-list"></ol>
+      <div class="dock-foot"></div>
+    </nav>
+    <button class="dock-block" type="button" aria-expanded="false" aria-controls="dock-panel" aria-label="GB, open navigation">
+      <svg class="dock-hex" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+        <polygon class="hex-fill" points="60.8,32 46.4,56.96 17.6,56.96 3.2,32 17.6,7.04 46.4,7.04"/>
+        <polygon class="hex-progress" points="60.8,32 46.4,56.96 17.6,56.96 3.2,32 17.6,7.04 46.4,7.04"/>
+        <text x="32" y="37" text-anchor="middle">GB</text>
+      </svg>
+    </button>
+  </div>
+
+  <div class="page">
+    <header class="site-header wrap">
+      <a class="brand" href="/" aria-label="GB Giamba, home">
+        <svg class="brand-mark" viewBox="0 0 40 40" width="40" height="40" aria-hidden="true" focusable="false">
+          <polygon class="hex" points="38,20 29,35.6 11,35.6 2,20 11,4.4 29,4.4"/>
+          <text x="20" y="24.5" text-anchor="middle">GB</text>
+        </svg>
+        <span class="brand-name">Giamba</span>
+      </a>
+      <nav class="site-nav" aria-label="Main">
+        <a class="nav-link" href="#work">Work</a>
+        <a class="nav-link" href="#stack">Stack</a>
+        <a class="nav-link" href="#contact">Contact</a>
+      </nav>
+      <div class="lang" role="group" aria-label="Language">
+        <a href="/" hreflang="en" lang="en" aria-current="true">EN</a>
+        <a href="/it/" hreflang="it" lang="it">IT</a>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero wrap" id="top">
+        <div class="hero-copy">
+          <p class="eyebrow">Blockchain and Solidity developer · Italy</p>
+          <h1>Smart contracts you can read, test and <em>verify.</em></h1>
+          <p class="lede">I write Solidity with Foundry and build the TypeScript layer around it. My focus is contract security, governance and DeFi mechanics.</p>
+          <div class="cta-row">
+            <a class="btn btn--primary" href="https://github.com/Gi4mba" target="_blank" rel="noopener">See my GitHub</a>
+            <a class="btn btn--ghost" href="#contact">Contact me</a>
+          </div>
+        </div>
+
+        <aside class="hud bracketed" aria-label="Toolchain">
+          <div class="hud-head"><span>// toolchain</span><span class="live">evm</span></div>
+          <svg class="hud-art" viewBox="0 0 320 320" aria-hidden="true" focusable="false">
+            <circle class="r-outer" cx="160" cy="160" r="150"/>
+            <circle class="r-ticks ring ring-a" cx="160" cy="160" r="140"/>
+            <circle class="r-mid" cx="160" cy="160" r="112"/>
+            <circle class="r-dash ring ring-b" cx="160" cy="160" r="112"/>
+            <polygon class="hex" points="238,160 199,227.5 121,227.5 82,160 121,92.5 199,92.5"/>
+            <polygon class="diamond" points="160,118 202,160 160,202 118,160"/>
+            <circle class="core" cx="160" cy="160" r="3"/>
+            <line class="axis" x1="0" y1="160" x2="22" y2="160"/>
+            <line class="axis" x1="298" y1="160" x2="320" y2="160"/>
+            <line class="axis" x1="160" y1="0" x2="160" y2="22"/>
+            <line class="axis" x1="160" y1="298" x2="160" y2="320"/>
+          </svg>
+          <dl class="spec">
+            <div><dt>language</dt><dd>Solidity</dd></div>
+            <div><dt>toolchain</dt><dd>Foundry</dd></div>
+            <div><dt>app layer</dt><dd>TypeScript · NestJS · React</dd></div>
+            <div><dt>focus</dt><dd>Contract security</dd></div>
+          </dl>
+        </aside>
+      </section>
+
+      <section class="section wrap" id="work" aria-labelledby="work-title">
+        <p class="label">Selected work</p>
+        <h2 id="work-title">One project in depth, two in brief.</h2>
+
+        <article class="feature">
+          <div class="feature-main">
+            <p class="kicker">Featured · Governance</p>
+            <h3 class="feature-title">DnA-DAO</h3>
+            <p class="feature-text">Direct-democracy governance. Members buy shares with an ERC-20 token, then vote on proposals themselves. Sales close once and for good, so voting weight stays fixed and no snapshot is needed.</p>
+            <ul class="tags">
+              <li>Solidity</li>
+              <li>Foundry</li>
+              <li>OpenZeppelin</li>
+            </ul>
+            <a class="btn btn--primary" href="https://github.com/Gi4mba/DnA-DAO" target="_blank" rel="noopener">View repository</a>
+          </div>
+          <dl class="spec spec--lg feature-spec">
+            <div><dt>Phases</dt><dd>Share sale, then voting</dd></div>
+            <div><dt>Quorum</dt><dd>40% of shares must vote</dd></div>
+            <div><dt>Approval</dt><dd>More For than Against</dd></div>
+            <div><dt>Tests</dt><dd>46 in Foundry, 2 of them fuzz</dd></div>
+            <div><dt>CI</dt><dd>fmt, build, test on every push</dd></div>
+          </dl>
+
+          <div class="sim" id="sim" data-total="1000" data-status="approved">
+            <h4 class="sim-title">Try the voting rule</h4>
+            <p class="sim-note">A DAO with 1,000 shares. Move the votes: the outcome runs the same integer checks as <code>status()</code> in the contract.</p>
+            <div class="sim-grid">
+              <div class="sim-controls">
+                <div class="sim-field" data-kind="for">
+                  <label for="sim-for">For</label>
+                  <output id="sim-for-out" for="sim-for">300</output>
+                  <input id="sim-for" type="range" min="0" max="1000" step="1" value="300">
+                </div>
+                <div class="sim-field" data-kind="against">
+                  <label for="sim-against">Against</label>
+                  <output id="sim-against-out" for="sim-against">180</output>
+                  <input id="sim-against" type="range" min="0" max="1000" step="1" value="180">
+                </div>
+                <div class="sim-field" data-kind="abstain">
+                  <label for="sim-abstain">Abstain</label>
+                  <output id="sim-abstain-out" for="sim-abstain">60</output>
+                  <input id="sim-abstain" type="range" min="0" max="1000" step="1" value="60">
+                </div>
+                <div class="sim-presets" role="group" aria-label="Edge cases from the test suite">
+                  <button type="button" data-preset="400,0,0">Exactly 40%</button>
+                  <button type="button" data-preset="390,0,0">39% turnout</button>
+                  <button type="button" data-preset="250,250,0">Tie</button>
+                  <button type="button" data-preset="251,250,0">Won by one share</button>
+                  <button type="button" data-preset="0,0,500">All abstain</button>
+                </div>
+              </div>
+              <div class="sim-outcome">
+                <p class="sim-status" data-status="approved" aria-live="polite">Approved</p>
+                <div class="sim-bar" aria-hidden="true">
+                  <span class="sim-seg sim-seg-for"></span><span class="sim-seg sim-seg-against"></span><span class="sim-seg sim-seg-abstain"></span>
+                  <span class="sim-quorum"></span>
+                </div>
+                <ul class="sim-checks">
+                  <li class="sim-check" data-ok="true">Quorum reached: 54% of shares voted, 40% needed</li>
+                  <li class="sim-check" data-ok="true">More For than Against: 300 to 180</li>
+                </ul>
+                <p class="sim-rest">460 shares did not vote</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <div class="cards">
+          <article class="card">
+            <p class="kicker">Solidity</p>
+            <h3>Tongue-NewsManager</h3>
+            <p>Smart contracts for the backend of a social project that serves verified news, with validation handled by appointed users.</p>
+            <a class="link-mono card-link" href="https://github.com/Gi4mba/Tongue-NewsManager" target="_blank" rel="noopener" aria-label="Tongue-NewsManager on GitHub">GitHub</a>
+          </article>
+          <article class="card">
+            <p class="kicker">TypeScript · IPFS</p>
+            <h3>Bio-shop</h3>
+            <p>E-commerce dApp with IPFS support.</p>
+            <a class="link-mono card-link" href="https://github.com/Gi4mba/Bio-shop" target="_blank" rel="noopener" aria-label="Bio-shop on GitHub">GitHub</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="section wrap" id="stack" aria-labelledby="stack-title">
+        <p class="label">Stack</p>
+        <h2 id="stack-title">The contract first, then everything around it.</h2>
+        <div class="stack-grid">
+          <div class="stack-col">
+            <h3>Contracts</h3>
+            <p>Where the logic and the risk live.</p>
+            <ul class="tags"><li>Solidity</li><li>Foundry</li><li>EVM</li></ul>
+          </div>
+          <div class="stack-col">
+            <h3>Application layer</h3>
+            <p>APIs and interfaces that talk to the chain.</p>
+            <ul class="tags"><li>TypeScript</li><li>NestJS</li><li>React</li></ul>
+          </div>
+          <div class="stack-col">
+            <h3>On-chain analysis</h3>
+            <p>How I read DeFi before building on it.</p>
+            <ul class="tags"><li>DeFiLlama</li><li>TradingView</li></ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section wrap" id="path" aria-labelledby="path-title">
+        <p class="label" id="path-title">Path</p>
+        <ol class="path">
+          <li><span class="path-when">2024–2025</span><span class="path-what">Master in Blockchain Developing · Start2Impact</span></li>
+          <li><span class="path-when">Dec 2024</span><span class="path-what">Cybersecurity course, final exam passed · Learnn</span></li>
+        </ol>
+      </section>
+
+      <div class="sheet">
+      <section class="section wrap" id="contact" aria-labelledby="contact-title">
+        <div class="contact-panel bracketed">
+          <div class="contact-copy">
+            <p class="label">Contact</p>
+            <h2 id="contact-title">Hiring, collaborating, or have a contract to build? <em>Write me.</em></h2>
+            <p>The code is on GitHub. The conversation starts here.</p>
+            <a class="btn btn--ghost" href="https://github.com/Gi4mba" target="_blank" rel="noopener">GitHub</a>
+          </div>
+
+          <form class="form" id="contact-form" data-sending="Sending…" data-ok="Message sent. I will get back to you." data-error="Something went wrong. Try again, or reach me on LinkedIn.">
+            <div class="field">
+              <label for="user_name">Name</label>
+              <input id="user_name" name="user_name" type="text" autocomplete="name" maxlength="120" required>
+            </div>
+            <div class="field">
+              <label for="user_email">Email</label>
+              <input id="user_email" name="user_email" type="email" autocomplete="email" maxlength="254" required>
+            </div>
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="4" maxlength="2000" required></textarea>
+            </div>
+            <div class="hp" aria-hidden="true">
+              <label for="website">Website</label>
+              <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+            </div>
+            <button class="btn btn--primary" type="submit">Send message</button>
+            <p class="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <span class="copyright">© 2026 Giovanni Battista Avella</span>
+        <nav aria-label="Profiles">
+          <ul class="social">
+            <li><a href="https://github.com/Gi4mba" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="https://www.linkedin.com/in/giovanni-battista-avella-1a915633b/" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://x.com/gi4mba" target="_blank" rel="noopener">X</a></li>
+          </ul>
+        </nav>
+      </div>
+    </footer>
+  </div>
+
+  <script src="/assets/js/main.js" defer></script>
 </body>
 </html>
-
