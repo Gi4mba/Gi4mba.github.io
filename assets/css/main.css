@@ -780,6 +780,9 @@ h1 {
   .form .btn { align-self: stretch; min-height: 52px; }
   .card { padding: 24px; }
   .card h3 { font-size: 24px; }
+  /* Smaller ring drawing so the profile rows come up the screen */
+  .hud { padding: 20px; }
+  .hud-art { max-width: 240px; margin: 14px auto 4px; }
 }
 
 /* --- Motion (only when the visitor allows it) ------------------------------ */
