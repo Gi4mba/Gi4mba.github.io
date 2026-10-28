@@ -9,6 +9,7 @@
 //   <!-- build:projects -->  projects page: every project, newest first
 // With the projects flag off, the projects pages are not copied at all:
 // the URL does not exist online.
+
 import { cpSync, existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, extname, join } from 'node:path';
 import { createHash } from 'node:crypto';
@@ -102,40 +103,77 @@ function spec(p, lang, cls) {
   ].join('\n');
 }
 
-// Home: the featured project in full, the others as cards
-function renderWork(lang) {
-  const f = byId.get(featured);
-  const parts = [
-    main(f, lang, {
-      kicker: `${T[lang].featured} · ${f.area[lang]}`,
-      heading: `<h3 class="feature-title">${esc(f.title)}</h3>`,
-    }),
-    spec(f, lang, 'spec spec--lg feature-spec'),
-  ].filter(Boolean);
-  let feature = `<article class="feature">\n${indent(parts.join('\n'), 2)}\n`;
-  if (f.extra[lang]) feature += `\n${indent(f.extra[lang], 2)}\n`;
-  feature += '</article>';
+// Home
+const MORE = { en: 'More code on GitHub', it: 'Altro codice su GitHub' };
+const GITHUB = 'https://github.com/Gi4mba';
+const ROW = { en: 'More projects', it: 'Altri progetti' };
+const HINT = { en: 'Swipe sideways for more projects', it: 'Scorri di lato per vedere gli altri progetti' };
+const link = (p, cls, attrs = '') => `<a${cls ? ` class="${cls}"` : ''} href="${esc(p.repo)}" target="_blank" rel="noopener"${attrs}>`;
 
-  const cardList = cards.map((id) => {
+function renderHome(lang) {
+  const f = byId.get(featured);
+  const feature = [
+    '<article class="dao">',
+    '  <div class="wrap dao-grid">',
+    '    <div class="dao-main">',
+    `      <h3 class="dao-name">${link(f, '', ` aria-label="${esc(`${f.title} ${T[lang].on}`)}"`)}${esc(f.title)}</a></h3>`,
+    `      <p class="dao-text">${esc(f.summary[lang])}</p>`,
+    `      <ul class="tags">${f.stack.map((s) => `<li>${esc(s)}</li>`).join('')}</ul>`,
+    `      <a class="btn" href="${esc(f.repo)}" target="_blank" rel="noopener">${T[lang].repo}</a>`,
+    '    </div>',
+    `    ${link(f, 'dao-pic ph', ' tabindex="-1" aria-hidden="true"')}</a>`,
+    '  </div>',
+    f.extra[lang] ? `  <div class="wrap">\n${indent(f.extra[lang], 4)}\n  </div>` : null,
+    f.spec?.length
+      ? `  <div class="wrap">\n    <dl class="facts">\n${f.spec.map((r) => `      <div><dt>${esc(r[lang][0])}</dt><dd>${esc(r[lang][1])}</dd></div>`).join('\n')}\n    </dl>\n  </div>`
+      : null,
+    '</article>',
+  ].filter((l) => l !== null).join('\n');
+
+  const panels = cards.map((id) => {
     const p = byId.get(id);
     return [
-      '<article class="card">',
-      `  <p class="kicker">${esc(p.stack.join(' · '))}</p>`,
-      `  <h3>${esc(p.title)}</h3>`,
-      `  <p>${esc((p.teaser ?? p.summary)[lang])}</p>`, // short line for the home; the full summary lives on /projects
-      `  <a class="link-mono card-link" href="${esc(p.repo)}" target="_blank" rel="noopener" aria-label="${esc(`${p.title} ${T[lang].on}`)}">GitHub</a>`,
-      '</article>',
-    ].join('\n');
+      '<li class="panel">',
+      '  <div class="ph panel-pic" aria-hidden="true"></div>',
+      `  <h3>${link(p, 'stretch', ` aria-label="${esc(`${p.title} ${T[lang].on}`)}"`)}${esc(p.title)}</a></h3>`,
+      `  <p>${esc((p.teaser ?? p.summary)[lang])}</p>`,
+      `  <p class="panel-stack">${esc(p.stack.join(' · '))}</p>`,
+      '</li>',
+    ].filter(Boolean).join('\n');
   });
+  panels.push(`<li class="panel panel--end">\n  <h3>${MORE[lang]}</h3>\n  <a class="btn" href="${GITHUB}" target="_blank" rel="noopener">GitHub</a>\n</li>`);
 
-  let html = `${feature}\n\n<div class="cards">\n${indent(cardList.join('\n'), 2)}\n</div>`;
+  const hint = `<p class="row-hint">${HINT[lang]}</p>`;
+  let html = `${feature}\n\n${hint}\n<ul class="row" aria-label="${ROW[lang]}">\n${indent(panels.join('\n'), 2)}\n</ul>`;
   if (PROJECTS_PAGE) {
-    html += `\n\n<p class="work-more"><a class="link-mono" href="${T[lang].path}">${T[lang].all}</a></p>`;
+    html += `\n\n<p class="wrap work-more"><a class="textlink" href="${T[lang].path}">${T[lang].all}</a></p>`;
   }
-  return indent(html, 8);
+  return indent(html, 6);
 }
 
-// Projects page: every project gets everything it has
+// Certificates: a looping band built from content/certificates.json
+const CERT_LABEL = { en: 'Certificates', it: 'Attestati' };
+const certs = JSON.parse(readFileSync(join(ROOT, 'content', 'certificates.json'), 'utf8'));
+for (const c of certs) {
+  if (c.placeholder) continue;
+  if (!c.file || !c.alt?.en || !c.alt?.it) throw new Error('content/certificates.json: each entry needs file, alt.en and alt.it');
+  if (!existsSync(join(ROOT, 'assets', 'img', 'certs', c.file))) throw new Error(`content/certificates.json: assets/img/certs/${c.file} not found`);
+}
+
+function renderCerts(lang) {
+  const MIN = 6; // items per set: enough to be wider than any screen
+  const items = Array.from({ length: Math.ceil(MIN / certs.length) }, () => certs).flat();
+  const set = (hidden) => [
+    `<div class="certs-set"${hidden ? ' aria-hidden="true"' : ''}>`,
+    ...items.map((c) => c.placeholder
+      ? '  <figure class="cert"><div class="cert--soon" aria-hidden="true"></div></figure>'
+      : `  <figure class="cert"><img src="/assets/img/certs/${esc(c.file)}" alt="${hidden ? '' : esc(c.alt[lang])}" decoding="async"></figure>`),
+    '</div>',
+  ].join('\n');
+  return indent(`<div class="certs" role="group" aria-label="${CERT_LABEL[lang]}">\n  <div class="certs-track">\n${indent(set(false), 4)}\n${indent(set(true), 4)}\n  </div>\n</div>`, 6);
+}
+
+// Projects page
 function renderProjects(lang) {
   return projects.map((p) => {
     const side = [renderThumb(p), spec(p, lang, 'spec spec--lg')].filter(Boolean).join('\n');
@@ -156,9 +194,7 @@ function renderProjects(lang) {
   }).join('\n\n');
 }
 
-// Thumbnail: a project can ship its own image (thumb.webp / thumb.png / thumb.svg in its
-// folder). Otherwise the build draws its block signature: the project id hashed with
-// SHA-256, each byte deciding the colour of one hexagon. Same id, same picture, forever.
+// Thumbnail
 function renderThumb(p) {
   for (const f of ['thumb.webp', 'thumb.png', 'thumb.svg']) {
     if (existsSync(join(DIR, p.id, f))) {
@@ -198,8 +234,7 @@ function renderThumb(p) {
   ].join('\n');
 }
 
-// Snippet: real code as text (selectable, searchable, read by screen readers),
-// with a light highlight done here so the page ships no highlighter.
+// Snippet: real code as text
 const KEYWORDS = {
   sol: ['if', 'else', 'return', 'returns', 'function', 'external', 'public', 'internal', 'view', 'pure', 'storage', 'memory', 'emit', 'require', 'true', 'false'],
   ts: ['const', 'let', 'await', 'async', 'return', 'if', 'else', 'function', 'true', 'false', 'new'],
@@ -253,8 +288,10 @@ function fill(file, marker, html) {
   writeFileSync(path, src.replace(line, html));
 }
 
-fill('index.html', 'work', renderWork('en'));
-fill('it/index.html', 'work', renderWork('it'));
+fill('index.html', 'work', renderHome('en'));
+fill('it/index.html', 'work', renderHome('it'));
+fill('index.html', 'certs', renderCerts('en'));
+fill('it/index.html', 'certs', renderCerts('it'));
 
 if (PROJECTS_PAGE) {
   for (const [lang, file] of Object.entries(PROJECT_PAGES)) {

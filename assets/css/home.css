@@ -1,0 +1,274 @@
+@font-face { font-family: "Space Grotesk"; font-style: normal; font-weight: 500; font-display: swap; src: url("/assets/fonts/space-grotesk-500.woff2") format("woff2"); }
+@font-face { font-family: "Space Grotesk"; font-style: normal; font-weight: 600; font-display: swap; src: url("/assets/fonts/space-grotesk-600.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Sans"; font-style: normal; font-weight: 300; font-display: swap; src: url("/assets/fonts/plex-sans-300.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Sans"; font-style: normal; font-weight: 400; font-display: swap; src: url("/assets/fonts/plex-sans-400.woff2") format("woff2"); }
+
+:root {
+  --ground: #07060c;
+  --raise: #130b1f;      /* one tone step above the ground */
+  --field: #1d0b36;      /* deep violet, whole-field sections */
+  --violet: #9824e5;
+  --acid: #d4ff00;       /* the action, and "approved" */
+
+  --ink: #f3effa;
+  --soft: #d3cce2;
+  --muted: #b2aac4;
+  --against: #ffb3f7;    /* simulator only */
+  --abstain: #b48cf0;    /* simulator only */
+
+  --display: "Space Grotesk", "IBM Plex Sans", system-ui, sans-serif;
+  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* five steps */
+  --t-display: clamp(40px, 5.8vw, 92px);
+  --t-title: clamp(34px, 4.6vw, 68px);
+  --t-lead: clamp(22px, 2.5vw, 36px);
+  --t-body: 17px;
+  --t-small: 14px;
+
+  --m: clamp(20px, 3.4vw, 48px);   /* the one pair of outer margins */
+  --gap: clamp(104px, 14vw, 200px);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { color-scheme: dark; background: var(--ground); scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scrollbar-color: #4b4360 var(--ground); }
+body { margin: 0; background: var(--ground); color: var(--ink); font: 300 var(--t-body)/1.65 var(--sans); -webkit-font-smoothing: antialiased; }
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-underline-offset: 4px; }
+p { margin: 0; text-wrap: pretty; }
+h1, h2, h3, h4 { margin: 0; font-family: var(--display); font-weight: 500; letter-spacing: -0.03em; line-height: 1.02; text-wrap: balance; color: var(--ink); }
+ul, dl, ol { margin: 0; padding: 0; list-style: none; }
+dd { margin: 0; }
+::selection { background: var(--violet); color: #fff; }
+:focus-visible { outline: 2px solid var(--acid); outline-offset: 3px; }
+input, textarea, button { caret-color: var(--acid); accent-color: var(--acid); }
+
+.wrap { padding-inline: var(--m); }
+.skip { position: absolute; left: -9999px; top: 8px; z-index: 10; padding: 12px 16px; background: var(--acid); color: var(--ground); font: 500 var(--t-small) var(--sans); }
+.skip:focus { left: 8px; }
+
+/* --- Actions -------------------------------------------------------------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 52px; padding: 0 28px;
+  border: 0; border-radius: 0;
+  background: var(--acid); color: var(--ground);
+  font: 500 17px/1 var(--sans);
+  text-decoration: none; cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s;
+}
+.btn:hover { background: #e4ff4d; transform: translateY(-2px); }
+.btn:active { transform: translateY(1px) scale(0.98); }
+.btn:disabled { opacity: 0.6; cursor: progress; transform: none; }
+.textlink { display: inline-flex; align-items: center; min-height: 44px; color: var(--ink); font-weight: 400; text-decoration: underline; text-decoration-thickness: 1px; transition: color 0.2s; }
+.textlink:hover { color: var(--acid); }
+
+/* --- Header: a plain bar -------------------------------------------------- */
+.bar { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 36px; padding: 12px var(--m); }
+.wordmark { display: inline-flex; align-items: center; min-height: 44px; margin-right: auto; font: 500 20px var(--display); letter-spacing: -0.01em; text-decoration: none; }
+.nav { display: flex; flex-wrap: wrap; gap: 0 32px; }
+.nav a { display: inline-flex; align-items: center; min-height: 44px; color: var(--soft); font-size: 17px; text-decoration: none; transition: color 0.2s; }
+.nav a:hover { color: var(--acid); }
+.lang { display: flex; gap: 4px; }
+.lang a { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; color: var(--muted); font-size: 17px; text-decoration: none; }
+.lang a:hover { color: var(--ink); }
+.lang a[aria-current="true"] { color: var(--acid); }
+
+/* --- Hero: one lit portrait, one action ----------------------------------- */
+.hero { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); align-items: center; gap: 48px 24px; min-height: calc(100svh - 300px); padding: 24px var(--m) clamp(48px, 6vw, 96px); }
+.hero-copy { grid-column: 1 / span 8; }
+.hero h1 { font-size: var(--t-display); line-height: 0.96; letter-spacing: -0.045em; font-weight: 600; }
+:lang(it) .hero h1 { font-size: clamp(32px, 5.2vw, 82px); }
+.lede { max-width: 46ch; margin-top: 32px; color: var(--soft); font-size: var(--t-lead); line-height: 1.22; letter-spacing: -0.015em; }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 32px; margin-top: 44px; }
+.hero-pic { grid-column: 10 / span 3; margin: 0; overflow: hidden; }
+.hero-pic img { width: 100%; aspect-ratio: 1; object-fit: cover; filter: brightness(0.82) contrast(1.05); }
+
+/* --- Section headings: small, plain --------------------------------------- */
+.sec-title { padding-inline: var(--m); margin-bottom: clamp(40px, 5vw, 72px); font-size: clamp(28px, 2.6vw, 36px); letter-spacing: -0.02em; }
+.sec { padding-top: var(--gap); }
+.hero + .sec { padding-top: 0; } /* the hero already rests the eye */
+
+/* --- Work: DnA-DAO as a violet field -------------------------------------- */
+.dao { margin-top: 0; padding-block: clamp(64px, 7vw, 112px); background: var(--field); }
+.dao-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 48px 24px; align-items: center; }
+.dao-main { grid-column: 1 / span 6; }
+.dao-name { font-size: var(--t-title); font-weight: 600; letter-spacing: -0.045em; }
+.dao-text { max-width: 52ch; margin-top: 32px; color: var(--soft); font-size: 20px; }
+.tags { display: flex; flex-wrap: wrap; gap: 4px 20px; margin-top: 28px; color: var(--ink); font-size: 17px; font-weight: 400; }
+.dao .btn { margin-top: 40px; }
+.ph { display: block; width: 100%; aspect-ratio: 4 / 3; background: #3b3b40; } /* grey stand-in until the pictures arrive */
+.dao-pic { grid-column: 8 / span 5; transition: background-color 0.2s; }
+.dao-pic:hover { background: #4a4a50; }
+.dao-name a { color: inherit; text-decoration: none; transition: color 0.2s; }
+.dao-name a:hover { color: var(--acid); }
+
+/* The simulator: the lit verdict */
+.sim { margin-top: clamp(72px, 9vw, 140px); }
+.sim-title { font-size: clamp(26px, 2.6vw, 36px); letter-spacing: -0.02em; }
+.sim-note { max-width: 62ch; margin-top: 12px; color: var(--soft); }
+.sim-note code { font: 500 0.92em ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; color: var(--acid); }
+.sim-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 48px 24px; margin-top: 48px; align-items: start; }
+.sim-controls { grid-column: 1 / span 5; display: grid; gap: 22px; }
+.sim-outcome { grid-column: 7 / span 6; min-width: 0; }
+.sim-field { display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 4px 12px; }
+.sim-field label { color: var(--soft); font-size: 17px; font-weight: 400; }
+.sim-field output { font: 500 20px var(--display); font-variant-numeric: tabular-nums; }
+.sim-field input { grid-column: 1 / -1; width: 100%; height: 36px; margin: 0; cursor: pointer; }
+.sim-field[data-kind="against"] input { accent-color: var(--against); }
+.sim-field[data-kind="abstain"] input { accent-color: var(--abstain); }
+.sim-presets { display: flex; flex-wrap: wrap; gap: 8px; }
+.sim-presets button { min-height: 44px; padding: 0 16px; border: 0; border-radius: 0; background: #ffffff1f; color: var(--ink); font: 400 14px var(--sans); cursor: pointer; transition: background-color 0.2s, transform 0.2s; }
+.sim-presets button:hover { background: #ffffff38; }
+.sim-presets button:active { transform: scale(0.97); }
+.sim-status { font: 600 clamp(48px, 8.4vw, 128px)/0.95 var(--display); letter-spacing: -0.05em; color: var(--acid); }
+.sim-status[data-status="rejected"] { color: var(--against); }
+.sim-status[data-status="quorum"] { color: var(--soft); }
+.sim-bar { --f: 0.3; --a: 0.18; --b: 0.06; position: relative; display: flex; height: 16px; margin-top: 44px; background: #ffffff1a; }
+.sim-seg { height: 100%; transition: width 0.18s ease-out; }
+.sim-seg-for { width: calc(var(--f) * 100%); background: var(--acid); }
+.sim-seg-against { width: calc(var(--a) * 100%); background: var(--against); }
+.sim-seg-abstain { width: calc(var(--b) * 100%); background: var(--abstain); }
+.sim-quorum { position: absolute; top: -8px; bottom: -8px; left: 40%; width: 3px; background: var(--ink); }
+.sim-quorum::after { content: "40%"; position: absolute; bottom: calc(100% + 4px); left: 50%; transform: translateX(-50%); color: var(--soft); font: 400 14px var(--sans); }
+.sim-checks { display: grid; gap: 8px; margin-top: 28px; }
+.sim-check { position: relative; padding-left: 22px; color: var(--soft); font-size: 17px; }
+.sim-check::before { content: ""; position: absolute; left: 0; top: 0.5em; width: 10px; height: 10px; background: var(--against); }
+.sim-check[data-ok="true"]::before { background: var(--acid); }
+.sim-check[data-ok="skip"]::before { background: var(--muted); }
+.sim-rest { margin-top: 12px; color: var(--muted); font-size: var(--t-small); }
+
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 32px 24px; margin-top: clamp(72px, 9vw, 140px); }
+.facts dt { color: var(--muted); font-size: var(--t-small); }
+.facts dd { margin-top: 6px; color: var(--ink); font: 500 20px/1.25 var(--display); letter-spacing: -0.015em; }
+
+/* Other projects: three panels in the grid; on a phone a row the visitor drags sideways
+   (the next panel peeks by its padding only, so no text sits against the edge). */
+.row-hint { display: none; }
+.row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 12px; padding-inline: var(--m); }
+.panel { position: relative; display: flex; flex-direction: column; padding: 28px 28px 32px; background: var(--raise); transition: background-color 0.2s; }
+.panel:not(.panel--end):hover { background: #1d1230; }
+.panel:focus-within { outline: 2px solid var(--acid); outline-offset: 3px; }
+.panel-pic { margin-bottom: 28px; transition: background-color 0.2s; }
+.panel:hover .panel-pic { background: #4a4a50; }
+/* the project name is the link; its ::after stretches over the whole panel */
+.stretch { color: inherit; text-decoration: none; transition: color 0.2s; }
+.stretch::after { content: ""; position: absolute; inset: 0; }
+.panel:hover .stretch { color: var(--acid); }
+.panel h3 { font-size: clamp(30px, 3.2vw, 44px); letter-spacing: -0.035em; font-weight: 600; }
+.panel p { margin-top: 16px; color: var(--soft); }
+.panel .panel-stack { color: var(--muted); font-size: var(--t-small); }
+.panel--end { justify-content: flex-end; background: var(--field); }
+.panel--end h3 { margin-bottom: 28px; }
+.panel--end .btn { align-self: flex-start; }
+.work-more { padding-top: 24px; }
+@media (max-width: 899px) {
+  .row-hint { display: block; margin-top: 24px; padding-inline: var(--m); color: var(--soft); }
+  .row { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--m); overscroll-behavior-x: contain; scrollbar-width: auto; scrollbar-color: var(--acid) #ffffff1f; padding-bottom: 16px; }
+  .panel { flex: 0 0 calc(100vw - var(--m) - 28px); scroll-snap-align: start; }
+}
+
+/* --- Stack: three columns of names, one size ------------------------------ */
+.stack-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 56px 24px; padding-inline: var(--m); }
+.stack-col { grid-column: span 4; }
+.stack-col h3 { font-size: 28px; letter-spacing: -0.025em; }
+.stack-col p { margin-top: 12px; max-width: 32ch; color: var(--soft); }
+.stack-col ul { margin-top: 24px; font-size: 20px; line-height: 1.35; color: var(--ink); font-weight: 400; }
+
+/* --- Path: the dates in large type, the certificate lit --------------------- */
+.path-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 56px 24px; padding-inline: var(--m); align-items: center; }
+.path { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px 24px; }
+.path li { display: grid; gap: 8px; }
+.path-when { color: var(--acid); font: 500 20px var(--display); font-variant-numeric: tabular-nums; }
+.path-what { font: 500 var(--t-lead)/1.15 var(--display); letter-spacing: -0.025em; }
+/* Certificates: a looping band. Two identical sets; the track slides by exactly one set. */
+.certs { margin-top: clamp(56px, 6vw, 96px); overflow: hidden; }
+.certs-track { display: flex; width: max-content; animation: certs-loop 60s linear infinite; }
+.certs:hover .certs-track, .certs:focus-within .certs-track { animation-play-state: paused; }
+.certs-set { display: flex; gap: 12px; padding-right: 12px; }
+.cert { flex: none; margin: 0; }
+.cert img, .cert--soon { display: block; height: clamp(180px, 17vw, 260px); width: auto; }
+/* placeholders: add the file to assets/img/certs/, list it in content/certificates.json, delete the entry */
+.cert--soon { display: grid; place-items: center; aspect-ratio: 1719 / 1417; padding: 12px; background: var(--raise); color: var(--muted); font-size: var(--t-small); text-align: center; }
+@keyframes certs-loop { to { transform: translateX(-50%); } }
+
+/* --- Contact: a violet field, one lit surface -------------------------------- */
+.contact { margin-top: var(--gap); padding-block: clamp(80px, 10vw, 160px); background: var(--violet); color: #fff; }
+.contact-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 56px 24px; padding-inline: var(--m); align-items: start; }
+.contact-copy { grid-column: 1 / span 6; }
+.contact h2 { color: #fff; font-size: var(--t-title); font-weight: 600; letter-spacing: -0.045em; }
+.contact-copy p { max-width: 36ch; margin-top: 28px; color: #fff; font-size: 20px; }
+.contact-copy .textlink { color: #fff; margin-top: 12px; }
+.contact-copy .textlink:hover { color: var(--acid); }
+.form { grid-column: 8 / span 5; display: grid; gap: 20px; }
+.field { display: grid; gap: 8px; }
+.field label { color: #fff; font-size: 17px; font-weight: 400; }
+.field input, .field textarea { width: 100%; min-height: 56px; padding: 0 16px; border: 0; border-radius: 0; background: #f6f2fb; color: #14101c; font: 400 17px var(--sans); }
+.field textarea { min-height: 148px; padding: 14px 16px; line-height: 1.5; resize: vertical; }
+.field input:focus, .field textarea:focus { outline: 3px solid var(--acid); outline-offset: 0; }
+.field input:user-invalid, .field textarea:user-invalid { outline: 3px solid var(--against); }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; } /* taste-skill-ignore: honeypot, not a rule */
+.form .btn { justify-self: start; }
+.form-status { min-height: 1.5em; color: #fff; font-size: 17px; }
+.form-status.is-ok { font-weight: 500; }
+
+/* --- Footer: one quiet line ---------------------------------------------- */
+.foot { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 8px 24px; margin-top: 20svh; padding: 0 var(--m) 30px; color: var(--muted); font-size: 17px; }
+.foot nav ul { display: flex; flex-wrap: wrap; justify-content: center; gap: 0 24px; }
+.foot nav a { display: inline-flex; align-items: center; min-height: 44px; color: var(--ink); text-decoration: none; }
+.foot nav a:hover { color: var(--acid); }
+.foot span:last-child { text-align: right; }
+
+/* --- 404 / stubs keep main.css -------------------------------------------- */
+
+/* --- Phone ---------------------------------------------------------------- */
+@media (max-width: 860px) {
+  .hero-copy, .hero-pic, .dao-main, .dao-pic, .sim-controls, .sim-outcome, .path, .contact-copy, .form, .stack-col { grid-column: 1 / -1; }
+  .hero-pic { max-width: 360px; }
+  .hero, .dao-grid, .sim-grid, .stack-grid, .path-grid, .contact-grid { grid-template-columns: minmax(0, 1fr); gap: 48px; }
+  .hero { min-height: 0; padding-top: 32px; padding-bottom: 72px; }
+  .lede { font-size: 22px; }
+  .dao-text, .contact-copy p { font-size: 17px; }
+  .path { grid-template-columns: minmax(0, 1fr); }
+  .path-what { font-size: 24px; }
+  .foot { grid-template-columns: 1fr; gap: 4px; margin-top: 20svh; }
+  .foot nav ul { justify-content: flex-start; }
+  .foot span:last-child { text-align: left; }
+  .foot nav a { min-height: 44px; }
+}
+@media (max-width: 560px) {
+  .nav { order: 3; flex-basis: 100%; justify-content: space-between; gap: 0 16px; }
+  .btn { min-height: 56px; }
+  .actions .btn { flex: 1 1 100%; }
+  .form .btn { justify-self: stretch; }
+}
+
+/* --- Motion (only when allowed). Transform and opacity only. -------------- */
+@keyframes rise { from { transform: translateY(24px); opacity: 0; } }
+@keyframes drift { from { transform: scale(1); } to { transform: scale(1.1); } }
+@media (prefers-reduced-motion: no-preference) {
+  .hero-copy > *, .hero-pic { animation: rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both; }
+  .hero-copy > :nth-child(2) { animation-delay: 80ms; }
+  .hero-copy > :nth-child(3) { animation-delay: 160ms; }
+  .hero-pic { animation-delay: 240ms; }
+
+  @supports (animation-timeline: view()) {
+    .hero-pic img { animation: drift linear both; animation-timeline: view(); animation-range: exit 0% exit 100%; }
+    .sec-title, .dao-main > *, .dao-pic, .sim-title, .sim-note, .sim-controls, .sim-outcome, .facts > *,
+    .panel, .stack-col, .path li, .contact-copy > *, .form > * {
+      animation: rise linear forwards; animation-timeline: view(); animation-range: entry 0% entry 38%;
+    }
+    .dao-main > :nth-child(2), .stack-col:nth-child(2), .contact-copy > :nth-child(2) { animation-range: entry 6% entry 44%; }
+    .dao-main > :nth-child(3), .stack-col:nth-child(3), .contact-copy > :nth-child(3) { animation-range: entry 12% entry 50%; }
+    .dao-main > :nth-child(4) { animation-range: entry 18% entry 56%; }
+  }
+  .row { scroll-behavior: smooth; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .certs { overflow-x: auto; }
+  .certs-track { animation: none; }
+  .certs-set[aria-hidden] { display: none; }
+  .btn, .textlink, .sim-presets button { transition: none; }
+  .sim-seg { transition: none; }
+}
