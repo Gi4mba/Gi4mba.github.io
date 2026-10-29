@@ -106,6 +106,7 @@ function spec(p, lang, cls) {
 // Home
 const MORE = { en: 'More code on GitHub', it: 'Altro codice su GitHub' };
 const GITHUB = 'https://github.com/Gi4mba';
+const WORK_TITLE = { en: 'Selected work', it: 'Progetti in evidenza' };
 const ROW = { en: 'More projects', it: 'Altri progetti' };
 const HINT = { en: 'Swipe sideways for more projects', it: 'Scorri di lato per vedere gli altri progetti' };
 const link = (p, cls, attrs = '') => `<a${cls ? ` class="${cls}"` : ''} href="${esc(p.repo)}" target="_blank" rel="noopener"${attrs}>`;
@@ -114,6 +115,7 @@ function renderHome(lang) {
   const f = byId.get(featured);
   const feature = [
     '<article class="dao">',
+    `  <div class="wrap">\n    <h2 class="sec-title" id="work-title">${WORK_TITLE[lang]}</h2>\n  </div>`,
     '  <div class="wrap dao-grid">',
     '    <div class="dao-main">',
     `      <h3 class="dao-name">${link(f, '', ` aria-label="${esc(`${f.title} ${T[lang].on}`)}"`)}${esc(f.title)}</a></h3>`,
