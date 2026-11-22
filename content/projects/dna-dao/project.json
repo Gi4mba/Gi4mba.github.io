@@ -48,12 +48,22 @@
     },
     {
       "en": [
+        "Treasury",
+        "Owner withdraws after sales close; renouncing ownership is disabled"
+      ],
+      "it": [
+        "Tesoreria",
+        "L'owner preleva dopo la chiusura; la rinuncia all'ownership è disattivata"
+      ]
+    },
+    {
+      "en": [
         "Tests",
-        "46 in Foundry, 2 of them fuzz"
+        "55 in Foundry, 2 of them fuzz"
       ],
       "it": [
         "Test",
-        "46 in Foundry, 2 di tipo fuzz"
+        "55 in Foundry, 2 di tipo fuzz"
       ]
     },
     {
@@ -70,10 +80,10 @@
   "snippet": {
     "file": "src/GovernanceDAO.sol",
     "lines": [
-      237,
-      245
+      249,
+      257
     ],
-    "commit": "1fbea1e16714962bae41a616b01be4e2d7c96ada",
+    "commit": "140edfb7fc69b68ff5c2631dd262dedb24ad8865",
     "caption": {
       "en": "status(): the integer checks the simulator below reproduces.",
       "it": "status(): i controlli su interi che il simulatore qui sotto riproduce."
